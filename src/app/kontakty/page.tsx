@@ -46,41 +46,34 @@ export default function ContactsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-navy" />
-        <div className="absolute inset-0 opacity-[0.05]">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 30% 50%, rgba(249,168,37,0.15) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(249,168,37,0.1) 0%, transparent 50%)",
-            }}
-          />
-        </div>
+        <div className="absolute inset-0 hero-grid-pattern" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/[0.03] blur-[80px]" />
 
-        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-gold text-sm font-medium mb-6">
+        <div className="relative z-10 py-20 sm:py-28">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium mb-8">
               <MessageCircle className="w-4 h-4" />
               Контакти
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               Зв&#39;яжіться{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
                 з нами
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto">
               Залиште заявку і ми зв&#39;яжемося з вами для безкоштовної
               консультації
             </p>
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
       </section>
 
       {/* Content */}
       <section className="section-padding">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
             {/* Left: Contact Info */}
             <div className="lg:col-span-2 space-y-6">
@@ -98,7 +91,7 @@ export default function ContactsPage() {
                 {contactInfo.map((item) => {
                   const Icon = item.icon;
                   const content = (
-                    <div className="flex items-start gap-4 bg-white rounded-xl p-5 card-hover border border-gray-100">
+                    <div className="flex items-start gap-4 bg-white rounded-2xl p-5 card-hover border border-gray-100">
                       <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center">
                         <Icon className="w-5 h-5 text-gold" />
                       </div>
@@ -106,7 +99,7 @@ export default function ContactsPage() {
                         <p className="text-text-light text-sm mb-0.5">
                           {item.label}
                         </p>
-                        <p className="text-text font-medium">{item.value}</p>
+                        <p className="text-text font-semibold">{item.value}</p>
                       </div>
                     </div>
                   );

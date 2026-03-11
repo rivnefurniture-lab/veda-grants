@@ -1,7 +1,6 @@
 "use client";
 
 import { Star, Quote } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const testimonials = [
   {
@@ -27,12 +26,16 @@ const testimonials = [
 export function TestimonialsSection() {
   return (
     <section className="section-padding bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section heading */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
+          <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
+            Відгуки
+          </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4">
             Що кажуть наші клієнти
           </h2>
+          <div className="gold-line" />
           <p className="text-text-light max-w-2xl mx-auto text-lg">
             Реальні відгуки від підприємців, яким ми допомогли отримати
             фінансування
@@ -40,20 +43,20 @@ export function TestimonialsSection() {
         </div>
 
         {/* Testimonials grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.author}
-              className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm card-hover animate-fade-in-up relative"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="relative bg-cream/60 rounded-2xl p-7 sm:p-8 border border-gray-100/80 card-hover animate-fade-in-up"
+              style={{ animationDelay: `${index * 120}ms` }}
             >
               {/* Quote icon */}
-              <div className="absolute top-6 right-6">
-                <Quote className="w-8 h-8 text-gold/20" />
+              <div className="absolute top-7 right-7">
+                <Quote className="w-10 h-10 text-gold/10" />
               </div>
 
               {/* Stars */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-0.5 mb-5">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star
                     key={i}
@@ -63,16 +66,15 @@ export function TestimonialsSection() {
               </div>
 
               {/* Text */}
-              <p className="text-text leading-relaxed mb-6 italic">
+              <p className="text-text leading-relaxed mb-6 text-[15px]">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Author */}
-              <div className="border-t border-gray-100 pt-4">
+              <div className="border-t border-gray-100 pt-5">
                 <div className="flex items-center gap-3">
-                  {/* Avatar placeholder */}
-                  <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center">
-                    <span className="text-gold font-semibold text-sm">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shadow-sm">
+                    <span className="text-navy font-bold text-sm">
                       {testimonial.author
                         .split(" ")
                         .map((n) => n[0])
@@ -80,10 +82,10 @@ export function TestimonialsSection() {
                     </span>
                   </div>
                   <div>
-                    <p className="font-semibold text-text text-sm">
+                    <p className="font-semibold text-text">
                       {testimonial.author}
                     </p>
-                    <p className="text-text-light text-xs">
+                    <p className="text-text-light text-sm">
                       {testimonial.company}
                     </p>
                   </div>

@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Database, TrendingUp, Award, Heart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState, useCallback } from "react";
+import { TrendingUp, Target, Users, ThumbsUp } from "lucide-react";
 
 interface StatItem {
   icon: React.ElementType;
@@ -14,7 +13,7 @@ interface StatItem {
 
 const stats: StatItem[] = [
   {
-    icon: Database,
+    icon: Target,
     value: 150,
     suffix: "+",
     label: "Грантів у базі",
@@ -27,13 +26,13 @@ const stats: StatItem[] = [
     label: "Залучено фінансування",
   },
   {
-    icon: Award,
+    icon: Users,
     value: 50,
     suffix: "+",
     label: "Успішних проєктів",
   },
   {
-    icon: Heart,
+    icon: ThumbsUp,
     value: 98,
     suffix: "%",
     label: "Задоволених клієнтів",
@@ -56,16 +55,17 @@ function AnimatedCounter({
   useEffect(() => {
     if (!isVisible) return;
 
-    let start = 0;
+    let current = 0;
     const duration = 2000;
-    const increment = value / (duration / 16);
+    const step = value / (duration / 16);
+
     const timer = setInterval(() => {
-      start += increment;
-      if (start >= value) {
+      current += step;
+      if (current >= value) {
         setCount(value);
         clearInterval(timer);
       } else {
-        setCount(Math.floor(start));
+        setCount(Math.floor(current));
       }
     }, 16);
 
@@ -73,7 +73,7 @@ function AnimatedCounter({
   }, [isVisible, value]);
 
   return (
-    <span className="text-4xl sm:text-5xl font-bold text-gold">
+    <span className="text-4xl sm:text-5xl font-extrabold text-white tabular-nums">
       {prefix}
       {count}
       {suffix}
@@ -82,10 +82,11 @@ function AnimatedCounter({
 }
 
 export function StatsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  useEffect(() => {
+  const sectionRef = useCallback((node: HTMLElement | null) => {
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -93,37 +94,35 @@ export function StatsSection() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
+    observer.observe(node);
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding bg-cream">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <section ref={sectionRef} className="relative py-20 overflow-hidden">
+      <div className="absolute inset-0 gradient-navy" />
+      <div className="absolute inset-0 hero-grid-pattern" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={stat.label}
-                className={cn(
-                  "bg-white rounded-2xl p-6 sm:p-8 text-center shadow-sm border border-gray-100 transition-all duration-700 hover:shadow-md",
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                )}
-                style={{ transitionDelay: `${index * 150}ms` }}
+                className="text-center transition-all duration-700"
+                style={{
+                  opacity: isVisible ? 1 : 0,
+                  transform: isVisible ? "translateY(0)" : "translateY(24px)",
+                  transitionDelay: `${index * 150}ms`,
+                }}
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gold/10 mb-4">
-                  <Icon className="w-7 h-7 text-gold" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gold/10 mb-4">
+                  <Icon className="w-6 h-6 text-gold" />
                 </div>
-                <div className="mb-2">
+                <div className="mb-1">
                   <AnimatedCounter
                     value={stat.value}
                     suffix={stat.suffix}
@@ -131,7 +130,7 @@ export function StatsSection() {
                     isVisible={isVisible}
                   />
                 </div>
-                <p className="text-text-light text-sm sm:text-base font-medium">
+                <p className="text-white/50 text-sm font-medium mt-1">
                   {stat.label}
                 </p>
               </div>

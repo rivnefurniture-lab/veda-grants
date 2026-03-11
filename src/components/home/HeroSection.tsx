@@ -2,161 +2,124 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const badges = [
-  { text: "150+ грантів", delay: 0 },
-  { text: "€10M+ залучено", delay: 200 },
-  { text: "50+ клієнтів", delay: 400 },
+const features = [
+  "Пошук грантів під ваш бізнес",
+  "Написання грантових заявок",
+  "Повний супровід проєкту",
 ];
 
 export function HeroSection() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[92vh] flex items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 gradient-navy" />
+      <div className="absolute inset-0 hero-grid-pattern" />
 
-      {/* Geometric pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage: `
-            linear-gradient(30deg, #f9a825 12%, transparent 12.5%, transparent 87%, #f9a825 87.5%, #f9a825),
-            linear-gradient(150deg, #f9a825 12%, transparent 12.5%, transparent 87%, #f9a825 87.5%, #f9a825),
-            linear-gradient(30deg, #f9a825 12%, transparent 12.5%, transparent 87%, #f9a825 87.5%, #f9a825),
-            linear-gradient(150deg, #f9a825 12%, transparent 12.5%, transparent 87%, #f9a825 87.5%, #f9a825),
-            linear-gradient(60deg, #ffd95a 25%, transparent 25.5%, transparent 75%, #ffd95a 75%, #ffd95a),
-            linear-gradient(60deg, #ffd95a 25%, transparent 25.5%, transparent 75%, #ffd95a 75%, #ffd95a)
-          `,
-          backgroundSize: "80px 140px",
-          backgroundPosition:
-            "0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px",
-        }}
-      />
+      {/* Decorative glow */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold/[0.04] blur-[100px]" />
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/[0.03] blur-[80px]" />
 
-      {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gold/5 blur-3xl" />
-
-      {/* Floating circles decoration */}
-      <div className="absolute top-20 right-[10%] w-64 h-64 rounded-full border border-gold/10 animate-pulse" />
-      <div className="absolute bottom-20 left-[5%] w-40 h-40 rounded-full border border-gold/10 animate-pulse [animation-delay:1s]" />
-      <div className="absolute top-[40%] right-[5%] w-20 h-20 rounded-full bg-gold/5 animate-pulse [animation-delay:2s]" />
-
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div
-            className={cn(
-              "inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-gold text-sm font-medium mb-8 transition-all duration-700",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4"
-            )}
-          >
-            <Sparkles className="w-4 h-4" />
-            Агенція економічного розвитку ВЕДА
-          </div>
-
-          {/* Main heading */}
-          <h1
-            className={cn(
-              "text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 transition-all duration-700 delay-150",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            )}
-          >
-            Ваш надійний партнер{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
-              у світі грантів
-            </span>{" "}
-            та фінансування
-          </h1>
-
-          {/* Subheading */}
-          <p
-            className={cn(
-              "text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-300",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            )}
-          >
-            Допомагаємо українському бізнесу отримувати гранти від державних та
-            міжнародних програм. Від пошуку можливостей до успішної реалізації
-            проєктів.
-          </p>
-
-          {/* Buttons */}
-          <div
-            className={cn(
-              "flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 transition-all duration-700 delay-500",
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-6"
-            )}
-          >
-            <Link
-              href="/granty"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-gold/25 hover:shadow-xl hover:shadow-gold/30 hover:-translate-y-0.5"
+      {/* Content */}
+      <div className="relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="max-w-3xl">
+            {/* Label */}
+            <div
+              className={cn(
+                "inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium mb-8 transition-all duration-700",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              )}
             >
-              Знайти грант
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/kontakty"
-              className="inline-flex items-center gap-2 px-8 py-4 glass text-white font-semibold rounded-xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5"
-            >
-              Безкоштовна консультація
-            </Link>
-          </div>
+              <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+              Агенція економічного розвитку ВЕДА
+            </div>
 
-          {/* Floating badges */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {badges.map((badge, i) => (
-              <div
-                key={badge.text}
-                className={cn(
-                  "px-5 py-3 rounded-2xl glass text-white font-medium text-sm transition-all duration-700 hover:scale-105",
-                  isVisible
-                    ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-8"
-                )}
-                style={{
-                  transitionDelay: `${700 + badge.delay}ms`,
-                  animation: isVisible
-                    ? `float 3s ease-in-out ${i * 0.5}s infinite`
-                    : "none",
-                }}
+            {/* Heading */}
+            <h1
+              className={cn(
+                "text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-extrabold text-white leading-[1.1] mb-6 transition-all duration-700 delay-150",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              )}
+            >
+              Допомагаємо бізнесу{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
+                отримувати гранти
+              </span>{" "}
+              та фінансування
+            </h1>
+
+            {/* Subheading */}
+            <p
+              className={cn(
+                "text-lg sm:text-xl text-white/60 max-w-xl mb-8 leading-relaxed transition-all duration-700 delay-300",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              )}
+            >
+              Від пошуку можливостей до успішної реалізації проєктів — ваш надійний партнер у світі грантового фінансування
+            </p>
+
+            {/* Feature list */}
+            <div
+              className={cn(
+                "flex flex-col gap-3 mb-10 transition-all duration-700 delay-400",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              )}
+            >
+              {features.map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-gold shrink-0" />
+                  <span className="text-white/80 text-base">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Buttons */}
+            <div
+              className={cn(
+                "flex flex-col sm:flex-row items-start gap-4 transition-all duration-700 delay-500",
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-6"
+              )}
+            >
+              <Link
+                href="/granty"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:shadow-gold/30 hover:-translate-y-0.5 text-base"
               >
-                <span className="text-gold font-bold">{badge.text}</span>
-              </div>
-            ))}
+                Знайти грант
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/kontakty"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-0.5 text-base"
+              >
+                Безкоштовна консультація
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
-        }
-      `}</style>
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
     </section>
   );
 }

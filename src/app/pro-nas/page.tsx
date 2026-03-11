@@ -110,29 +110,22 @@ export default function ProNasPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-navy" />
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, #f9a825 0%, transparent 50%),
-              radial-gradient(circle at 80% 50%, #ffd95a 0%, transparent 50%)`,
-          }}
-        />
-        <div className="absolute top-20 right-[15%] w-48 h-48 rounded-full border border-gold/10" />
-        <div className="absolute bottom-16 left-[10%] w-32 h-32 rounded-full border border-gold/10" />
+        <div className="absolute inset-0 hero-grid-pattern" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/[0.03] blur-[80px]" />
 
-        <div className="relative z-10 section-padding">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-gold text-sm font-medium mb-6">
+        <div className="relative z-10 py-20 sm:py-28">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium mb-8">
               <Award className="w-4 h-4" />
               З 2022 року на ринку
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
               Про агенцію{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
                 ВЕДА
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
               Ваш надійний партнер у сфері грантового консалтингу та
               бізнес-розвитку. Допомагаємо перетворювати можливості на реальне
               фінансування.
@@ -140,15 +133,15 @@ export default function ProNasPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-cream to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
       </section>
 
       {/* Mission */}
       <section className="section-padding">
-        <div className="max-w-4xl mx-auto">
-          <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
             <div className="absolute -top-5 left-8 md:left-12">
-              <div className="w-10 h-10 rounded-full gradient-gold flex items-center justify-center shadow-md">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shadow-sm">
                 <Heart className="w-5 h-5 text-navy" />
               </div>
             </div>
@@ -166,13 +159,13 @@ export default function ProNasPage() {
 
       {/* Story */}
       <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
-              <span className="text-gold font-semibold text-sm uppercase tracking-wider">
+              <div className="section-label bg-gold/10 text-gold w-fit">
                 Наша історія
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-6">
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
                 Від ідеї до результату
               </h2>
               <div className="space-y-4 text-text-light leading-relaxed">
@@ -200,31 +193,31 @@ export default function ProNasPage() {
             </div>
 
             <div className="space-y-6">
-              <div className="bg-cream rounded-2xl p-6 card-hover border border-border">
-                <div className="text-4xl font-bold text-gold mb-1">150+</div>
-                <div className="text-text-light">
+              <div className="bg-cream rounded-2xl p-7 border border-gray-100 card-hover">
+                <div className="text-4xl font-extrabold text-gold mb-1">150+</div>
+                <div className="text-text-light font-medium">
                   Грантових можливостей у базі
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-6">
-                <div className="bg-cream rounded-2xl p-6 card-hover border border-border">
-                  <div className="text-3xl font-bold text-navy mb-1">50+</div>
-                  <div className="text-sm text-text-light">
+                <div className="bg-cream rounded-2xl p-7 border border-gray-100 card-hover">
+                  <div className="text-3xl font-extrabold text-navy mb-1">50+</div>
+                  <div className="text-sm text-text-light font-medium">
                     Задоволених клієнтів
                   </div>
                 </div>
-                <div className="bg-cream rounded-2xl p-6 card-hover border border-border">
-                  <div className="text-3xl font-bold text-navy mb-1">
+                <div className="bg-cream rounded-2xl p-7 border border-gray-100 card-hover">
+                  <div className="text-3xl font-extrabold text-navy mb-1">
                     €10M+
                   </div>
-                  <div className="text-sm text-text-light">
+                  <div className="text-sm text-text-light font-medium">
                     Залученого фінансування
                   </div>
                 </div>
               </div>
-              <div className="bg-cream rounded-2xl p-6 card-hover border border-border">
-                <div className="text-4xl font-bold text-gold mb-1">3+</div>
-                <div className="text-text-light">
+              <div className="bg-cream rounded-2xl p-7 border border-gray-100 card-hover">
+                <div className="text-4xl font-extrabold text-gold mb-1">3+</div>
+                <div className="text-text-light font-medium">
                   Роки досвіду на ринку
                 </div>
               </div>
@@ -235,23 +228,24 @@ export default function ProNasPage() {
 
       {/* Values */}
       <section className="section-padding">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-gold font-semibold text-sm uppercase tracking-wider">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
               Що нас визначає
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2">
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
               Наші цінності
             </h2>
+            <div className="gold-line" />
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {values.map((value) => (
               <div
                 key={value.title}
-                className="bg-white rounded-2xl p-6 card-hover border border-border text-center"
+                className="bg-white rounded-2xl p-7 card-hover border border-gray-100 text-center"
               >
-                <div className="w-14 h-14 rounded-2xl gradient-gold flex items-center justify-center mx-auto mb-4 shadow-md">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold to-gold-light flex items-center justify-center mx-auto mb-5 shadow-sm">
                   <value.icon className="w-7 h-7 text-navy" />
                 </div>
                 <h3 className="text-lg font-bold text-navy mb-2">
@@ -268,30 +262,30 @@ export default function ProNasPage() {
 
       {/* Team */}
       <section className="section-padding bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-gold font-semibold text-sm uppercase tracking-wider">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="section-label bg-navy/5 text-navy mx-auto w-fit">
               Люди ВЕДА
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2">
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
               Наша команда
             </h2>
-            <p className="text-text-light mt-4 max-w-2xl mx-auto">
+            <div className="gold-line" />
+            <p className="text-text-light max-w-2xl mx-auto">
               Професіонали, які щодня працюють над тим, щоб ваш бізнес отримав
               найкращі можливості для розвитку
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
             {teamMembers.map((member) => (
               <div
                 key={member.name}
-                className="bg-cream rounded-2xl p-8 card-hover border border-border text-center"
+                className="bg-cream/60 rounded-2xl p-8 card-hover border border-gray-100 text-center"
               >
-                {/* Avatar */}
                 <div
                   className={cn(
-                    "w-20 h-20 rounded-full bg-gradient-to-br flex items-center justify-center mx-auto mb-5 shadow-lg",
+                    "w-20 h-20 rounded-full bg-gradient-to-br flex items-center justify-center mx-auto mb-5 shadow-md",
                     member.color
                   )}
                 >
@@ -303,7 +297,7 @@ export default function ProNasPage() {
                 <h3 className="text-lg font-bold text-navy mb-1">
                   {member.name}
                 </h3>
-                <div className="text-gold font-medium text-sm mb-4">
+                <div className="text-gold font-semibold text-sm mb-4">
                   {member.role}
                 </div>
                 <p className="text-sm text-text-light leading-relaxed">
@@ -317,22 +311,23 @@ export default function ProNasPage() {
 
       {/* Company Details */}
       <section className="section-padding">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-gold font-semibold text-sm uppercase tracking-wider">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
               Реквізити
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2">
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
               Інформація про компанію
             </h2>
+            <div className="gold-line" />
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-lg border border-border">
+          <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-gray-100">
             <div className="space-y-6">
               {companyDetails.map((detail) => (
                 <div
                   key={detail.label}
-                  className="flex items-start gap-4 pb-6 border-b border-border last:border-0 last:pb-0"
+                  className="flex items-start gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0"
                 >
                   <div className="w-10 h-10 rounded-xl bg-cream flex items-center justify-center shrink-0">
                     <detail.icon className="w-5 h-5 text-gold" />
@@ -353,23 +348,24 @@ export default function ProNasPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-padding">
-        <div className="max-w-4xl mx-auto">
+      <section className="section-padding bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="gradient-navy rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-gold/5 -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 rounded-full bg-gold/5 translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute inset-0 hero-grid-pattern" />
+            <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-gold/[0.04] blur-[60px]" />
+            <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.03] blur-[60px]" />
 
             <div className="relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 Готові до співпраці?
               </h2>
-              <p className="text-white/70 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
+              <p className="text-white/50 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
                 Зв&apos;яжіться з нами для безкоштовної консультації. Разом
                 знайдемо найкращі грантові можливості для вашого бізнесу.
               </p>
               <Link
                 href="/kontakty"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-gold/25 hover:shadow-xl hover:shadow-gold/30 hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
               >
                 Зв&apos;язатися з нами
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
