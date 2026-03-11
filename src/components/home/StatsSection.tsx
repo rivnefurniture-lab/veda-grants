@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { TrendingUp, Target, Users, ThumbsUp } from "lucide-react";
+import { FloatingIcons } from "@/components/FloatingIcons";
 
 interface StatItem {
   icon: React.ElementType;
@@ -73,7 +74,7 @@ function AnimatedCounter({
   }, [isVisible, value]);
 
   return (
-    <span className="text-4xl sm:text-5xl font-extrabold text-white tabular-nums">
+    <span className="text-4xl sm:text-5xl font-extrabold tabular-nums font-heading text-shimmer">
       {prefix}
       {count}
       {suffix}
@@ -104,6 +105,7 @@ export function StatsSection() {
     <section ref={sectionRef} className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 gradient-navy" />
       <div className="absolute inset-0 hero-grid-pattern" />
+      <FloatingIcons count={8} theme="light" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -112,13 +114,21 @@ export function StatsSection() {
             return (
               <div
                 key={stat.label}
-                className="text-center transition-all duration-700"
+                className="relative text-center transition-all duration-700"
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? "translateY(0)" : "translateY(24px)",
                   transitionDelay: `${index * 150}ms`,
                 }}
               >
+                {/* Gold separator dot between items on desktop */}
+                {index > 0 && (
+                  <div className="hidden lg:flex absolute -left-6 top-1/2 -translate-y-1/2 flex-col items-center gap-1.5">
+                    <span className="w-1 h-1 rounded-full bg-gold/30" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-gold/50" />
+                    <span className="w-1 h-1 rounded-full bg-gold/30" />
+                  </div>
+                )}
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gold/10 mb-4">
                   <Icon className="w-6 h-6 text-gold" />
                 </div>
@@ -130,7 +140,7 @@ export function StatsSection() {
                     isVisible={isVisible}
                   />
                 </div>
-                <p className="text-white/50 text-sm font-medium mt-1">
+                <p className="text-white/50 font-medium mt-1 tracking-wide uppercase text-xs">
                   {stat.label}
                 </p>
               </div>

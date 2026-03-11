@@ -10,6 +10,8 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { FloatingIcons } from "@/components/FloatingIcons";
 
 const services = [
   {
@@ -51,15 +53,18 @@ const services = [
 ];
 
 export function ServicesPreview() {
+  const revealRef = useScrollReveal();
+
   return (
-    <section className="section-padding bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative section-padding bg-white overflow-hidden">
+      <FloatingIcons count={8} theme="dark" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={revealRef}>
         {/* Section heading */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-14 reveal">
           <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
             Що ми робимо
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4 font-heading">
             Наші послуги
           </h2>
           <div className="gold-line" />
@@ -75,9 +80,15 @@ export function ServicesPreview() {
             return (
               <div
                 key={service.title}
-                className="bg-cream/60 rounded-2xl p-7 sm:p-8 border border-gray-100/80 card-hover group animate-fade-in-up"
-                style={{ animationDelay: `${index * 80}ms` }}
+                className="relative glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group overflow-hidden reveal"
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
+                {/* Gold top border on hover */}
+                <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                {/* Numbered index */}
+                <span className="absolute top-5 right-6 text-5xl font-bold text-navy/[0.04] font-heading select-none leading-none">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gold/10 mb-5 group-hover:bg-gold group-hover:shadow-lg group-hover:shadow-gold/20 transition-all duration-300">
                   <Icon className="w-7 h-7 text-gold group-hover:text-navy transition-colors duration-300" />
                 </div>

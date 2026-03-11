@@ -1,6 +1,8 @@
 "use client";
 
 import { Star, Quote } from "lucide-react";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { FloatingIcons } from "@/components/FloatingIcons";
 
 const testimonials = [
   {
@@ -24,15 +26,18 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
+  const revealRef = useScrollReveal();
+
   return (
-    <section className="section-padding bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative section-padding bg-white overflow-hidden">
+      <FloatingIcons count={6} theme="dark" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={revealRef}>
         {/* Section heading */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-14 reveal">
           <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
             Відгуки
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text mb-4 font-heading">
             Що кажуть наші клієнти
           </h2>
           <div className="gold-line" />
@@ -47,12 +52,12 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={testimonial.author}
-              className="relative bg-cream/60 rounded-2xl p-7 sm:p-8 border border-gray-100/80 card-hover animate-fade-in-up"
-              style={{ animationDelay: `${index * 120}ms` }}
+              className="relative glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover reveal"
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
               {/* Quote icon */}
               <div className="absolute top-7 right-7">
-                <Quote className="w-10 h-10 text-gold/10" />
+                <Quote className="w-12 h-12 text-gold/15" />
               </div>
 
               {/* Stars */}
@@ -71,7 +76,7 @@ export function TestimonialsSection() {
               </p>
 
               {/* Author */}
-              <div className="border-t border-gray-100 pt-5">
+              <div className="border-t border-gray-100/50 pt-5">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shadow-sm">
                     <span className="text-navy font-bold text-sm">

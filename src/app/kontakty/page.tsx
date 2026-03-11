@@ -55,7 +55,7 @@ export default function ContactsPage() {
               <MessageCircle className="w-4 h-4" />
               Контакти
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 font-heading">
               Зв&#39;яжіться{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
                 з нами
@@ -68,7 +68,7 @@ export default function ContactsPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
+{/* clean edge — no fade */}
       </section>
 
       {/* Content */}
@@ -78,7 +78,7 @@ export default function ContactsPage() {
             {/* Left: Contact Info */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <h2 className="text-2xl sm:text-3xl font-bold text-text mb-3">
+                <h2 className="text-2xl sm:text-3xl font-bold text-text mb-3 font-heading">
                   Наші контакти
                 </h2>
                 <p className="text-text-light">
@@ -124,7 +124,7 @@ export default function ContactsPage() {
             {/* Right: Contact Form */}
             <div className="lg:col-span-3">
               <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm">
-                <h3 className="text-xl font-bold text-text mb-6">
+                <h3 className="text-xl font-bold text-text mb-6 font-heading">
                   Надіслати заявку
                 </h3>
                 <ContactForm />

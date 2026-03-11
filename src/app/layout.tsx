@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,6 +7,12 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "cyrillic"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="uk">
-      <body className={`${inter.variable} antialiased font-[var(--font-inter)]`}>
+      <body className={`${inter.variable} ${playfair.variable} antialiased font-[var(--font-inter)]`}>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

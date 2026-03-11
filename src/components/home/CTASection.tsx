@@ -2,19 +2,30 @@
 
 import Link from "next/link";
 import { ArrowRight, Phone } from "lucide-react";
+import { FloatingIcons } from "@/components/FloatingIcons";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export function CTASection() {
+  const revealRef = useScrollReveal();
+
   return (
     <section className="section-padding bg-cream">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative gradient-navy rounded-3xl px-6 sm:px-12 lg:px-20 py-14 sm:py-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={revealRef}>
+        <div className="relative gradient-navy rounded-3xl px-6 sm:px-12 lg:px-20 py-14 sm:py-20 overflow-hidden reveal">
           {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-gold/[0.04] blur-[60px]" />
           <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.03] blur-[60px]" />
           <div className="absolute inset-0 hero-grid-pattern" />
+          <FloatingIcons count={6} theme="light" />
 
           <div className="relative z-10 max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+            <svg viewBox="0 0 48 60" fill="none" className="w-8 h-10 mx-auto mb-5">
+              <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
+              <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
+              <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
+              <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+            </svg>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 font-heading text-shimmer">
               Не знаєте з чого почати?
             </h2>
             <p className="text-white/50 text-lg max-w-xl mx-auto mb-10">

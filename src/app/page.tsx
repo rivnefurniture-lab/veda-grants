@@ -10,6 +10,10 @@ export default async function HomePage() {
   const grants = await prisma.grant.findMany({
     where: {
       status: "APPROVED",
+      OR: [
+        { deadline: { gte: new Date() } },
+        { deadline: null },
+      ],
     },
     orderBy: {
       createdAt: "desc",
@@ -29,8 +33,11 @@ export default async function HomePage() {
 
   return (
     <main>
-      <HeroSection />
-      <StatsSection />
+      {/* Navy wrapper — seamless hero → stats transition */}
+      <div className="bg-[var(--navy-dark)]">
+        <HeroSection />
+        <StatsSection />
+      </div>
       <ServicesPreview />
       <GrantsPreview grants={grants} />
       <TestimonialsSection />

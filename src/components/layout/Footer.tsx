@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 export function Footer() {
   return (
@@ -9,15 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
           {/* Company info */}
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
-                <span className="text-gold font-extrabold text-xl">В</span>
-              </div>
-              <div>
-                <div className="font-extrabold text-lg leading-none">ВЕДА</div>
-                <div className="text-[11px] text-white/40 tracking-[0.1em] uppercase leading-none mt-0.5">Агенція розвитку</div>
-              </div>
-            </div>
+            <Logo theme="light" size={40} className="mb-5" />
             <p className="text-white/50 text-sm leading-relaxed mb-3">
               ТОВ &quot;Агенція економічного розвитку ВЕДА&quot;. Допомагаємо бізнесу отримувати гранти та
               фінансування з 2022 року.

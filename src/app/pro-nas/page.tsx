@@ -10,7 +10,6 @@ import {
   Calendar,
   MapPin,
   FileText,
-  Award,
   Heart,
   Briefcase,
 } from "lucide-react";
@@ -116,10 +115,15 @@ export default function ProNasPage() {
         <div className="relative z-10 py-20 sm:py-28">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium mb-8">
-              <Award className="w-4 h-4" />
+              <svg viewBox="0 0 48 60" fill="none" className="w-3.5 h-4" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
+                <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
+                <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
+                <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+              </svg>
               З 2022 року на ринку
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 font-heading">
               Про агенцію{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
                 ВЕДА
@@ -133,7 +137,7 @@ export default function ProNasPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
+{/* clean edge — no fade */}
       </section>
 
       {/* Mission */}
@@ -145,7 +149,7 @@ export default function ProNasPage() {
                 <Heart className="w-5 h-5 text-navy" />
               </div>
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4 font-heading">
               Наша місія
             </h2>
             <p className="text-lg md:text-xl text-text-light leading-relaxed">
@@ -165,7 +169,7 @@ export default function ProNasPage() {
               <div className="section-label bg-gold/10 text-gold w-fit">
                 Наша історія
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-navy mb-6 font-heading">
                 Від ідеї до результату
               </h2>
               <div className="space-y-4 text-text-light leading-relaxed">
@@ -233,7 +237,7 @@ export default function ProNasPage() {
             <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
               Що нас визначає
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 font-heading">
               Наші цінності
             </h2>
             <div className="gold-line" />
@@ -267,7 +271,7 @@ export default function ProNasPage() {
             <div className="section-label bg-navy/5 text-navy mx-auto w-fit">
               Люди ВЕДА
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 font-heading">
               Наша команда
             </h2>
             <div className="gold-line" />
@@ -316,7 +320,7 @@ export default function ProNasPage() {
             <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
               Реквізити
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 font-heading">
               Інформація про компанію
             </h2>
             <div className="gold-line" />
@@ -356,7 +360,7 @@ export default function ProNasPage() {
             <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.03] blur-[60px]" />
 
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
                 Готові до співпраці?
               </h2>
               <p className="text-white/50 mb-8 max-w-xl mx-auto text-lg leading-relaxed">

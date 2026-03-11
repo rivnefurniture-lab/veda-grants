@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { GrantsCatalog } from "@/components/grants/GrantsCatalog";
 import { BookOpen } from "lucide-react";
+import { FloatingIcons } from "@/components/FloatingIcons";
 
 export const metadata = {
   title: "Гранти та можливості | ВЕДА",
@@ -12,10 +13,15 @@ export default async function GrantsPage() {
   const grants = await prisma.grant.findMany({
     where: {
       status: "APPROVED",
+      OR: [
+        { deadline: { gte: new Date() } },
+        { deadline: null },
+      ],
     },
-    orderBy: {
-      publishedAt: "desc",
-    },
+    orderBy: [
+      { deadline: "asc" },
+      { publishedAt: "desc" },
+    ],
     select: {
       id: true,
       title: true,
@@ -37,7 +43,9 @@ export default async function GrantsPage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 gradient-navy" />
         <div className="absolute inset-0 hero-grid-pattern" />
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gold/[0.03] blur-[80px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gold/[0.045] blur-[100px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/[0.03] blur-[80px]" />
+        <FloatingIcons count={8} theme="light" />
 
         <div className="relative z-10 py-20 sm:py-28">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -45,9 +53,9 @@ export default async function GrantsPage() {
               <BookOpen className="w-4 h-4" />
               Каталог грантів
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 font-heading">
               Гранти та{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
+              <span className="text-shimmer">
                 можливості
               </span>
             </h1>
@@ -67,12 +75,13 @@ export default async function GrantsPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
+{/* clean edge — no fade */}
       </section>
 
       {/* Catalog */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative section-padding overflow-hidden">
+        <FloatingIcons count={6} theme="dark" />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <GrantsCatalog grants={grants} />
         </div>
       </section>

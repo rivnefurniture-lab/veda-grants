@@ -8,13 +8,14 @@ import {
   Coins,
   MapPin,
   ArrowUpDown,
-  ExternalLink,
   SlidersHorizontal,
   MessageSquare,
   ArrowRight,
+  Clock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDeadline, formatAmount } from "@/lib/utils";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 type Grant = {
   id: string;
@@ -40,6 +41,7 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("Всі");
   const [sortBy, setSortBy] = useState<SortOption>("date");
+  const revealRef = useScrollReveal();
 
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
@@ -88,9 +90,9 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
   }, [grants, searchQuery, activeCategory, sortBy]);
 
   return (
-    <div>
+    <div ref={revealRef}>
       {/* Search & Sort Controls */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-4 mb-8 reveal">
         <div className="relative flex-1">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-text-light" />
           <input
@@ -98,7 +100,7 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
             placeholder="Пошук за назвою, джерелом, регіоном..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 text-text placeholder:text-text-light/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all"
+            className="w-full pl-12 pr-4 py-3.5 bg-white rounded-xl border border-gray-200 text-text placeholder:text-text-light/60 focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all shadow-sm"
           />
         </div>
 
@@ -107,7 +109,7 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as SortOption)}
-            className="appearance-none pl-11 pr-10 py-3.5 bg-white rounded-xl border border-gray-200 text-text focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all cursor-pointer"
+            className="appearance-none pl-11 pr-10 py-3.5 bg-white rounded-xl border border-gray-200 text-text focus:outline-none focus:ring-2 focus:ring-gold/30 focus:border-gold transition-all cursor-pointer shadow-sm"
           >
             <option value="date">За датою</option>
             <option value="amount">За сумою</option>
@@ -117,16 +119,16 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
       </div>
 
       {/* Category filter buttons */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-10 reveal">
         {categories.map((category) => (
           <button
             key={category}
             onClick={() => setActiveCategory(category)}
             className={cn(
-              "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
+              "px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
               activeCategory === category
-                ? "bg-navy text-white shadow-md"
-                : "bg-white text-text-light border border-gray-200 hover:border-navy/30 hover:text-navy"
+                ? "bg-navy text-white shadow-md shadow-navy/20"
+                : "bg-white text-text-light border border-gray-200 hover:border-gold/40 hover:text-gold-dark hover:shadow-sm"
             )}
           >
             {category}
@@ -135,7 +137,7 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
       </div>
 
       {/* Results count */}
-      <p className="text-text-light text-sm mb-6">
+      <p className="text-text-light text-sm mb-6 reveal">
         {filteredGrants.length === 0
           ? "Нічого не знайдено"
           : `Знайдено ${filteredGrants.length} ${
@@ -150,12 +152,12 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
       {/* Grants grid */}
       {filteredGrants.length > 0 ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredGrants.map((grant) => (
-            <GrantCard key={grant.id} grant={grant} />
+          {filteredGrants.map((grant, index) => (
+            <GrantCard key={grant.id} grant={grant} index={index} />
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white rounded-2xl border border-gray-100">
+        <div className="text-center py-16 glass-card rounded-2xl reveal">
           <Search className="w-12 h-12 text-text-light/30 mx-auto mb-4" />
           <h3 className="text-lg font-bold text-text mb-2">
             Грантів не знайдено
@@ -167,13 +169,14 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
       )}
 
       {/* CTA Section */}
-      <div className="mt-16 rounded-3xl gradient-navy p-8 sm:p-12 text-center relative overflow-hidden">
+      <div className="mt-16 rounded-3xl gradient-navy p-8 sm:p-12 text-center relative overflow-hidden reveal">
         <div className="absolute inset-0 hero-grid-pattern" />
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-gold/[0.04] blur-[60px]" />
+        <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.03] blur-[60px]" />
 
         <div className="relative z-10">
           <MessageSquare className="w-10 h-10 text-gold mx-auto mb-4" />
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-heading">
             Не знайшли потрібний грант?
           </h3>
           <p className="text-white/50 max-w-xl mx-auto mb-8 text-lg">
@@ -193,70 +196,76 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
   );
 }
 
-function GrantCard({ grant }: { grant: Grant }) {
+function GrantCard({ grant, index }: { grant: Grant; index: number }) {
+  const deadlineText = formatDeadline(grant.deadline);
+  const isUrgent =
+    grant.deadline &&
+    new Date(grant.deadline).getTime() - Date.now() < 7 * 24 * 60 * 60 * 1000 &&
+    new Date(grant.deadline).getTime() > Date.now();
+
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 overflow-hidden card-hover flex flex-col">
-      {/* Top accent line */}
-      <div className="h-1 bg-gradient-to-r from-gold to-gold-light" />
-      <div className="p-6 sm:p-7 flex flex-col flex-1">
-        {/* Badges */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          {grant.category && (
-            <span className="inline-block px-3 py-1 rounded-full bg-navy/5 text-navy text-xs font-semibold">
-              {grant.category}
-            </span>
-          )}
-          <span className="inline-block px-3 py-1 rounded-full bg-gold/10 text-gold-dark text-xs font-semibold">
-            {grant.source}
+    <Link
+      href={`/granty/${grant.id}`}
+      className="reveal glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group block"
+      style={{ transitionDelay: `${(index % 6) * 80}ms` }}
+    >
+      {/* Badges row */}
+      <div className="flex flex-wrap items-center gap-2 mb-4">
+        {grant.category && (
+          <span className="inline-block px-3 py-1 rounded-full bg-navy/[0.06] text-navy text-xs font-semibold">
+            {grant.category}
           </span>
-        </div>
+        )}
+        {isUrgent && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-danger/10 text-danger text-xs font-semibold">
+            <Clock className="w-3 h-3" />
+            Скоро
+          </span>
+        )}
+      </div>
 
-        {/* Title */}
-        <h3 className="font-bold text-lg text-text line-clamp-2 mb-3">
-          {grant.title}
-        </h3>
+      {/* Title */}
+      <h3 className="font-bold text-lg text-text line-clamp-2 mb-3 group-hover:text-navy-light transition-colors">
+        {grant.title}
+      </h3>
 
-        {/* Description */}
-        <p className="text-text-light text-sm line-clamp-3 mb-4 flex-1">
-          {grant.description}
-        </p>
+      {/* Description */}
+      <p className="text-text-light text-sm line-clamp-2 mb-5">
+        {grant.description}
+      </p>
 
-        {/* Divider */}
-        <div className="border-t border-gray-100 my-4" />
-
-        {/* Bottom info */}
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+      {/* Bottom info */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 border-t border-gray-100/60 pt-5">
+        {grant.amount && (
           <div className="flex items-center gap-1.5">
             <Coins className="w-4 h-4 text-gold-dark" />
-            <span className="text-gold-dark font-bold text-sm">
+            <span className="text-shimmer font-bold text-sm">
               {formatAmount(grant.amount)}
             </span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-4 h-4 text-text-light" />
-            <span className="text-text-light text-sm">
-              {formatDeadline(grant.deadline)}
-            </span>
-          </div>
-          {grant.region && (
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-text-light" />
-              <span className="text-text-light text-sm">{grant.region}</span>
-            </div>
-          )}
+        )}
+        <div className="flex items-center gap-1.5">
+          <Calendar className="w-4 h-4 text-text-light" />
+          <span className={cn(
+            "text-sm",
+            isUrgent ? "text-danger font-semibold" : "text-text-light"
+          )}>
+            {deadlineText}
+          </span>
         </div>
-
-        {/* Link */}
-        <a
-          href={grant.sourceUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm hover:text-gold-dark transition-colors group"
-        >
-          Детальніше
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
+        {grant.region && (
+          <div className="flex items-center gap-1.5">
+            <MapPin className="w-4 h-4 text-text-light" />
+            <span className="text-text-light text-sm">{grant.region}</span>
+          </div>
+        )}
       </div>
-    </div>
+
+      {/* Link indicator */}
+      <span className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm group-hover:gap-2.5 transition-all">
+        Детальніше
+        <ArrowRight className="w-4 h-4" />
+      </span>
+    </Link>
   );
 }

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Phone, Mail, MapPin } from "lucide-react";
+import { Logo } from "@/components/Logo";
 
 const navigation = [
   { name: "Головна", href: "/" },
@@ -42,14 +43,8 @@ export function Header() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-[72px]">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl gradient-navy flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
-                <span className="text-gold font-extrabold text-xl">В</span>
-              </div>
-              <div>
-                <div className="font-extrabold text-navy text-lg md:text-xl tracking-tight leading-none">ВЕДА</div>
-                <div className="text-[10px] md:text-[11px] text-text-light tracking-[0.1em] uppercase leading-none mt-0.5">Агенція розвитку</div>
-              </div>
+            <Link href="/" className="group">
+              <Logo theme="dark" size={44} />
             </Link>
 
             {/* Desktop nav */}

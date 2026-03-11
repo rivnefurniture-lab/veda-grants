@@ -139,7 +139,7 @@ export default function PoslugyPage() {
               <div className="w-2 h-2 rounded-full bg-gold animate-pulse" />
               6 напрямків роботи
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 font-heading">
               Наші{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
                 послуги
@@ -152,7 +152,7 @@ export default function PoslugyPage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-cream to-transparent" />
+{/* clean edge — no fade */}
       </section>
 
       {/* Services */}
@@ -238,7 +238,7 @@ export default function PoslugyPage() {
             <div className="section-label bg-gold/10 text-gold mx-auto w-fit">
               Простий процес
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 font-heading">
               Як ми працюємо
             </h2>
             <div className="gold-line" />
@@ -287,7 +287,7 @@ export default function PoslugyPage() {
             <div className="absolute bottom-0 left-0 w-60 h-60 rounded-full bg-gold/[0.03] blur-[60px]" />
 
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">
                 Потрібна допомога з грантом?
               </h2>
               <p className="text-white/50 mb-8 max-w-xl mx-auto text-lg leading-relaxed">
