@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Tag } from "lucide-react";
 import { formatAmount } from "@/lib/utils";
 import { FloatingIcons } from "@/components/FloatingIcons";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -50,33 +50,48 @@ export function GrantsPreview({ grants }: GrantsPreviewProps) {
               <Link
                 key={grant.id}
                 href={`/granty/${grant.id}`}
-                className="reveal glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group block"
+                className="reveal glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group flex flex-col"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                {/* Category badge */}
-                {grant.category && (
-                  <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gold/10 text-gold-dark mb-4">
-                    {grant.category}
+                {/* Badges */}
+                <div className="flex flex-wrap items-center gap-2 mb-4">
+                  {grant.category && (
+                    <span className="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gold/10 text-gold-dark">
+                      {grant.category}
+                    </span>
+                  )}
+                  <span className="inline-block px-2.5 py-1 text-[11px] font-medium rounded-full bg-navy/[0.05] text-navy/70">
+                    {grant.source}
                   </span>
-                )}
+                </div>
 
                 {/* Title */}
-                <h3 className="text-lg font-bold text-text mb-4 line-clamp-2 group-hover:text-navy-light transition-colors">
+                <h3 className="text-lg font-bold text-text mb-3 line-clamp-2 group-hover:text-navy-light transition-colors">
                   {grant.title}
                 </h3>
 
-                {/* Amount */}
-                {grant.amount && (
-                  <p className="text-shimmer font-bold text-xl mb-5 font-heading">
-                    {formatAmount(grant.amount)}
-                  </p>
+                {/* Sphere tag */}
+                {grant.sphere && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-navy/[0.04] text-text-light text-[11px] font-medium mb-4 self-start">
+                    <Tag className="w-3 h-3 text-gold-dark" />
+                    {grant.sphere}
+                  </span>
                 )}
 
-                {/* Link indicator */}
-                <span className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm group-hover:gap-2.5 transition-all">
-                  Детальніше
-                  <ArrowRight className="w-4 h-4" />
-                </span>
+                {/* Amount — star of the card */}
+                <div className="mt-auto">
+                  {grant.amount && (
+                    <p className="text-shimmer font-bold text-xl mb-4 font-heading">
+                      {formatAmount(grant.amount)}
+                    </p>
+                  )}
+
+                  {/* Link indicator */}
+                  <span className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm group-hover:gap-2.5 transition-all">
+                    Детальніше
+                    <ArrowRight className="w-4 h-4" />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>

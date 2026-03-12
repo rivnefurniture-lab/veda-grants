@@ -5,13 +5,13 @@ import Link from "next/link";
 import {
   Search,
   Calendar,
-  Coins,
   MapPin,
   ArrowUpDown,
   SlidersHorizontal,
   MessageSquare,
   ArrowRight,
   Clock,
+  Tag,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatDeadline, formatAmount } from "@/lib/utils";
@@ -196,6 +196,49 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
   );
 }
 
+function extractKeywords(description: string): string[] {
+  const keywords: string[] = [];
+  const text = description.toLowerCase();
+
+  const patterns: [RegExp, string][] = [
+    [/стартап/i, "Стартапи"],
+    [/малий бізнес|малого бізнесу|мсб|фоп|підприємц/i, "Малий бізнес"],
+    [/жін/i, "Для жінок"],
+    [/ветеран/i, "Для ветеранів"],
+    [/молод/i, "Для молоді"],
+    [/впо|переміщен/i, "Для ВПО"],
+    [/інвалідніст|інклюзив/i, "Інклюзія"],
+    [/школ|освіт|навчан/i, "Освіта"],
+    [/менторств|акселерат/i, "Менторство"],
+    [/обладнанн/i, "Обладнання"],
+    [/сертифікац/i, "Сертифікація"],
+    [/експорт|міжнародн/i, "Експорт"],
+    [/ai|штучн|машинн/i, "AI"],
+    [/блокчейн|crypto/i, "Blockchain"],
+    [/iot|інтернет речей|сенсор/i, "IoT"],
+    [/дрон|безпілотн/i, "Дрони"],
+    [/сонячн|енерг|теплов/i, "Енергетика"],
+    [/органічн|еко|зелен|сталий/i, "Еко"],
+    [/цифров|діджитал|it/i, "Digital"],
+    [/медичн|здоров|лікар/i, "Медицина"],
+    [/кіно|фільм|театр|музик/i, "Мистецтво"],
+    [/туризм|готел/i, "Туризм"],
+    [/аграр|ферм|сільськ|молоч|бджіл|рибн|зерн|ягід|теплиц/i, "Агро"],
+    [/будівниц|ремонт|відновлен/i, "Будівництво"],
+    [/переробк/i, "Переробка"],
+    [/виставк|ярмарк/i, "Виставки"],
+  ];
+
+  for (const [pattern, label] of patterns) {
+    if (pattern.test(text) || pattern.test(description)) {
+      keywords.push(label);
+    }
+    if (keywords.length >= 3) break;
+  }
+
+  return keywords;
+}
+
 function GrantCard({ grant, index }: { grant: Grant; index: number }) {
   const deadlineText = formatDeadline(grant.deadline);
   const isUrgent =
@@ -203,21 +246,26 @@ function GrantCard({ grant, index }: { grant: Grant; index: number }) {
     new Date(grant.deadline).getTime() - Date.now() < 7 * 24 * 60 * 60 * 1000 &&
     new Date(grant.deadline).getTime() > Date.now();
 
+  const keywords = extractKeywords(grant.description);
+
   return (
     <Link
       href={`/granty/${grant.id}`}
-      className="reveal glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group block"
+      className="reveal glass-card gradient-border rounded-2xl p-7 sm:p-8 card-hover group flex flex-col"
       style={{ transitionDelay: `${(index % 6) * 80}ms` }}
     >
-      {/* Badges row */}
+      {/* Top row: category + source + urgency */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
         {grant.category && (
           <span className="inline-block px-3 py-1 rounded-full bg-navy/[0.06] text-navy text-xs font-semibold">
             {grant.category}
           </span>
         )}
+        <span className="inline-block px-2.5 py-1 rounded-full bg-gold/[0.08] text-gold-dark text-[11px] font-medium">
+          {grant.source}
+        </span>
         {isUrgent && (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-danger/10 text-danger text-xs font-semibold">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-danger/10 text-danger text-xs font-semibold ml-auto">
             <Clock className="w-3 h-3" />
             Скоро
           </span>
@@ -225,29 +273,41 @@ function GrantCard({ grant, index }: { grant: Grant; index: number }) {
       </div>
 
       {/* Title */}
-      <h3 className="font-bold text-lg text-text line-clamp-2 mb-3 group-hover:text-navy-light transition-colors">
+      <h3 className="font-bold text-lg text-text line-clamp-2 mb-4 group-hover:text-navy-light transition-colors">
         {grant.title}
       </h3>
 
-      {/* Description */}
-      <p className="text-text-light text-sm line-clamp-2 mb-5">
-        {grant.description}
-      </p>
-
-      {/* Bottom info */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-5 border-t border-gray-100/60 pt-5">
-        {grant.amount && (
-          <div className="flex items-center gap-1.5">
-            <Coins className="w-4 h-4 text-gold-dark" />
-            <span className="text-shimmer font-bold text-sm">
-              {formatAmount(grant.amount)}
-            </span>
-          </div>
+      {/* Smart keyword chips instead of truncated description */}
+      <div className="flex flex-wrap gap-1.5 mb-5 flex-1">
+        {grant.sphere && (
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-navy/[0.04] text-text-light text-[11px] font-medium">
+            <Tag className="w-3 h-3 text-gold-dark" />
+            {grant.sphere}
+          </span>
         )}
+        {keywords.map((kw) => (
+          <span
+            key={kw}
+            className="inline-block px-2.5 py-1 rounded-lg bg-cream text-text-light text-[11px] font-medium"
+          >
+            {kw}
+          </span>
+        ))}
+      </div>
+
+      {/* Amount — hero element */}
+      {grant.amount && (
+        <p className="text-shimmer font-bold text-xl mb-4 font-heading">
+          {formatAmount(grant.amount)}
+        </p>
+      )}
+
+      {/* Bottom meta: deadline + region */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-4 border-t border-gray-100/60">
         <div className="flex items-center gap-1.5">
-          <Calendar className="w-4 h-4 text-text-light" />
+          <Calendar className="w-3.5 h-3.5 text-text-light/60" />
           <span className={cn(
-            "text-sm",
+            "text-xs",
             isUrgent ? "text-danger font-semibold" : "text-text-light"
           )}>
             {deadlineText}
@@ -255,17 +315,15 @@ function GrantCard({ grant, index }: { grant: Grant; index: number }) {
         </div>
         {grant.region && (
           <div className="flex items-center gap-1.5">
-            <MapPin className="w-4 h-4 text-text-light" />
-            <span className="text-text-light text-sm">{grant.region}</span>
+            <MapPin className="w-3.5 h-3.5 text-text-light/60" />
+            <span className="text-text-light text-xs">{grant.region}</span>
           </div>
         )}
+        <span className="inline-flex items-center gap-1 text-gold font-semibold text-xs ml-auto group-hover:gap-2 transition-all">
+          Детальніше
+          <ArrowRight className="w-3.5 h-3.5" />
+        </span>
       </div>
-
-      {/* Link indicator */}
-      <span className="inline-flex items-center gap-1.5 text-gold font-semibold text-sm group-hover:gap-2.5 transition-all">
-        Детальніше
-        <ArrowRight className="w-4 h-4" />
-      </span>
     </Link>
   );
 }
