@@ -48,7 +48,7 @@ export function Logo({
 
   if (variant === "icon") {
     return (
-      <div className={className}>
+      <div className={className} style={{ perspective: "200px" }}>
         <DiamondIcon height={h} theme={theme} />
       </div>
     );
@@ -56,7 +56,9 @@ export function Logo({
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <DiamondIcon height={h} theme={theme} />
+      <div style={{ perspective: "200px" }}>
+        <DiamondIcon height={h} theme={theme} />
+      </div>
       <div>
         <div
           className={cn(

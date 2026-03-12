@@ -78,9 +78,9 @@ export function HeroSection() {
           >
             {/* Diamond mark with glow */}
             <div className="flex justify-center mb-7">
-              <div className="relative">
+              <div className="relative" style={{ perspective: "200px" }}>
                 <div className="absolute inset-0 bg-gold/30 blur-2xl rounded-full scale-[2.5] animate-logo-glow" />
-                <DiamondMark className="relative w-11 h-14 drop-shadow-[0_0_12px_rgba(249,168,37,0.4)]" />
+                <DiamondMark className="relative w-11 h-14 drop-shadow-[0_0_12px_rgba(249,168,37,0.4)] animate-[spin-diamond_4s_ease-in-out_infinite]" />
               </div>
             </div>
 
