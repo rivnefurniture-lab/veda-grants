@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { GrantsCatalog } from "@/components/grants/GrantsCatalog";
 import { BookOpen } from "lucide-react";

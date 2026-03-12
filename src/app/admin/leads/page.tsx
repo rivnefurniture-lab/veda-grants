@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { CheckCircle, Mail, Phone, Building2, Clock } from "lucide-react";
