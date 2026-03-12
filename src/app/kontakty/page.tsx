@@ -8,9 +8,10 @@ import {
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata = {
-  title: "Контакти | ВЕДА",
+  title: "Контакти",
   description:
-    "Зв'яжіться з нами для консультації щодо грантів та фінансування. Телефон, email, адреса в Рівному.",
+    "Зв'яжіться з ВЕДА для консультації щодо грантів та фінансування. Телефон +38 (067) 216-05-59, email, адреса в Рівному.",
+  alternates: { canonical: "/kontakty" },
 };
 
 const contactInfo = [

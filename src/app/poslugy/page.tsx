@@ -17,9 +17,10 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Послуги — ВЕДА | Грантовий консалтинг",
+  title: "Послуги — Грантовий консалтинг",
   description:
     "Комплексний підхід до грантового фінансування: пошук грантів, написання заявок, бізнес-планування, супровід проєктів, навчання та пошук партнерів.",
+  alternates: { canonical: "/poslugy" },
 };
 
 const services = [

@@ -4,9 +4,10 @@ import { BookOpen } from "lucide-react";
 import { FloatingIcons } from "@/components/FloatingIcons";
 
 export const metadata = {
-  title: "Гранти та можливості | ВЕДА",
+  title: "Гранти та можливості",
   description:
-    "Актуальні грантові програми для українського бізнесу. Пошук грантів, фільтрація за категоріями та регіонами.",
+    "Актуальні грантові програми для українського бізнесу. Пошук грантів, фільтрація за категоріями та регіонами. 60+ активних грантів.",
+  alternates: { canonical: "/granty" },
 };
 
 export default async function GrantsPage() {

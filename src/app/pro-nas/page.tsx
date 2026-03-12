@@ -16,9 +16,10 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Про нас — ВЕДА | Агенція економічного розвитку",
+  title: "Про нас — Агенція економічного розвитку",
   description:
     "Дізнайтеся більше про агенцію ВЕДА — вашого надійного партнера у сфері грантового консалтингу. Команда, місія, цінності.",
+  alternates: { canonical: "/pro-nas" },
 };
 
 const values = [
