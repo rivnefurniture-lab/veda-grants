@@ -7,6 +7,47 @@ interface LogoProps {
   size?: number;
 }
 
+function DiamondFace({
+  width,
+  height,
+  back,
+}: {
+  width: number;
+  height: number;
+  back?: boolean;
+}) {
+  return (
+    <svg
+      width={width}
+      height={height}
+      viewBox="0 0 48 60"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute inset-0"
+      style={{
+        backfaceVisibility: "hidden",
+        transform: back ? "rotateY(180deg) translateZ(2px)" : "translateZ(2px)",
+      }}
+    >
+      {back ? (
+        <>
+          <path d="M24 0 L44 22 L24 28 Z" fill="#D4860A" />
+          <path d="M24 0 L4 22 L24 28 Z" fill="#B87000" />
+          <path d="M44 22 L24 60 L24 28 Z" fill="#F9A825" />
+          <path d="M4 22 L24 60 L24 28 Z" fill="#FFD95A" />
+        </>
+      ) : (
+        <>
+          <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
+          <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
+          <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
+          <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 function DiamondIcon({
   height,
   theme,
@@ -16,25 +57,22 @@ function DiamondIcon({
 }) {
   const width = Math.round(height * (48 / 60));
   return (
-    <svg
-      width={width}
-      height={height}
-      viewBox="0 0 48 60"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
       className="shrink-0 animate-[spin-diamond_4s_ease-in-out_infinite]"
       style={{
+        width,
+        height,
+        position: "relative",
+        transformStyle: "preserve-3d",
         filter:
           theme === "dark"
             ? "drop-shadow(0 1px 3px rgba(249,168,37,0.25))"
             : "drop-shadow(0 1px 3px rgba(249,168,37,0.15))",
       }}
     >
-      <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-      <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-      <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-      <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
-    </svg>
+      <DiamondFace width={width} height={height} />
+      <DiamondFace width={width} height={height} back />
+    </div>
   );
 }
 

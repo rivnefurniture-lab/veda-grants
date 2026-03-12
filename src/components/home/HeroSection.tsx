@@ -14,21 +14,35 @@ const features = [
 
 function DiamondMark({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 48 60"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
       className={className}
+      style={{ transformStyle: "preserve-3d" }}
     >
-      {/* Crown — top right facet (brightest) */}
-      <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-      {/* Crown — top left facet */}
-      <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-      {/* Pavilion — bottom right facet (darkest) */}
-      <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-      {/* Pavilion — bottom left facet */}
-      <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
-    </svg>
+      <svg
+        viewBox="0 0 48 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0 w-full h-full"
+        style={{ backfaceVisibility: "hidden", transform: "translateZ(2px)" }}
+      >
+        <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
+        <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
+        <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
+        <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+      </svg>
+      <svg
+        viewBox="0 0 48 60"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0 w-full h-full"
+        style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg) translateZ(2px)" }}
+      >
+        <path d="M24 0 L44 22 L24 28 Z" fill="#D4860A" />
+        <path d="M24 0 L4 22 L24 28 Z" fill="#B87000" />
+        <path d="M44 22 L24 60 L24 28 Z" fill="#F9A825" />
+        <path d="M4 22 L24 60 L24 28 Z" fill="#FFD95A" />
+      </svg>
+    </div>
   );
 }
 
