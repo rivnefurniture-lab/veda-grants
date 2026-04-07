@@ -12,7 +12,7 @@ export function Footer() {
           <div>
             <Logo theme="light" size={40} className="mb-5" />
             <p className="text-white/50 text-sm leading-relaxed mb-3">
-              ТОВ &quot;Агенція економічного розвитку ВЕДА&quot;. Допомагаємо бізнесу отримувати гранти та
+              ТОВ &quot;West Economic Development Agency WEDA&quot;. Допомагаємо бізнесу отримувати гранти та
               фінансування з 2022 року.
             </p>
             <p className="text-white/30 text-xs">ЄДРПОУ: 45088347</p>
@@ -61,9 +61,9 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@veda.agency" className="flex items-center gap-2.5 text-white/50 hover:text-gold transition-colors text-sm">
+                <a href="mailto:info@weda.com" className="flex items-center gap-2.5 text-white/50 hover:text-gold transition-colors text-sm">
                   <Mail size={15} className="shrink-0" />
-                  info@veda.agency
+                  info@weda.com
                 </a>
               </li>
               <li>
@@ -79,7 +79,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/[0.06] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/30 text-sm">
-            &copy; {new Date().getFullYear()} ТОВ &quot;Агенція економічного розвитку ВЕДА&quot;. Всі права захищені.
+            &copy; {new Date().getFullYear()} ТОВ &quot;West Economic Development Agency WEDA&quot;. Всі права захищені.
           </p>
           <div className="flex gap-6 text-sm text-white/30">
             <Link href="/privacy" className="hover:text-white/60 transition-colors">Політика конфіденційності</Link>

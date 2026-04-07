@@ -7,72 +7,41 @@ interface LogoProps {
   size?: number;
 }
 
-function DiamondFace({
-  width,
-  height,
-  back,
+function WGlyph({
+  size,
+  theme,
 }: {
-  width: number;
-  height: number;
-  back?: boolean;
+  size: number;
+  theme: string;
 }) {
   return (
     <svg
-      width={width}
-      height={height}
-      viewBox="0 0 48 60"
+      width={size}
+      height={size}
+      viewBox="0 0 512 512"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="absolute inset-0"
-      style={{
-        backfaceVisibility: "hidden",
-        transform: back ? "rotateY(180deg) translateZ(2px)" : "translateZ(2px)",
-      }}
+      className="shrink-0"
     >
-      {back ? (
-        <>
-          <path d="M24 0 L44 22 L24 28 Z" fill="#D4860A" />
-          <path d="M24 0 L4 22 L24 28 Z" fill="#B87000" />
-          <path d="M44 22 L24 60 L24 28 Z" fill="#F9A825" />
-          <path d="M4 22 L24 60 L24 28 Z" fill="#FFD95A" />
-        </>
-      ) : (
-        <>
-          <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-          <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-          <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-          <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
-        </>
-      )}
+      {/* Two dark blue parallelogram strokes forming W + orange triangle accent */}
+      <g>
+        {/* Left bar */}
+        <path
+          d="M100 100 L170 100 L260 412 L190 412 Z"
+          fill={theme === "light" ? "#FFFFFF" : "#0D1846"}
+        />
+        {/* Right bar */}
+        <path
+          d="M220 100 L290 100 L380 412 L310 412 Z"
+          fill={theme === "light" ? "#FFFFFF" : "#0D1846"}
+        />
+        {/* Orange triangle accent (top right) */}
+        <path
+          d="M340 100 L412 100 L376 220 Z"
+          fill="#E95623"
+        />
+      </g>
     </svg>
-  );
-}
-
-function DiamondIcon({
-  height,
-  theme,
-}: {
-  height: number;
-  theme: string;
-}) {
-  const width = Math.round(height * (48 / 60));
-  return (
-    <div
-      className="shrink-0 animate-[spin-diamond_4s_ease-in-out_infinite]"
-      style={{
-        width,
-        height,
-        position: "relative",
-        transformStyle: "preserve-3d",
-        filter:
-          theme === "dark"
-            ? "drop-shadow(0 1px 3px rgba(249,168,37,0.25))"
-            : "drop-shadow(0 1px 3px rgba(249,168,37,0.15))",
-      }}
-    >
-      <DiamondFace width={width} height={height} />
-      <DiamondFace width={width} height={height} back />
-    </div>
   );
 }
 
@@ -86,35 +55,33 @@ export function Logo({
 
   if (variant === "icon") {
     return (
-      <div className={className} style={{ perspective: "200px" }}>
-        <DiamondIcon height={h} theme={theme} />
+      <div className={className}>
+        <WGlyph size={h} theme={theme} />
       </div>
     );
   }
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
-      <div style={{ perspective: "200px" }}>
-        <DiamondIcon height={h} theme={theme} />
-      </div>
+      <WGlyph size={h} theme={theme} />
       <div>
         <div
           className={cn(
-            "font-heading font-bold tracking-[0.1em] leading-none",
+            "font-heading font-extrabold tracking-[0.08em] leading-none",
             theme === "dark"
               ? "text-navy text-lg md:text-xl"
               : "text-white text-lg"
           )}
         >
-          ВЕДА
+          WEDA
         </div>
         <div
           className={cn(
-            "text-[9px] md:text-[10px] tracking-[0.18em] uppercase leading-none mt-1 font-medium",
+            "text-[8px] md:text-[9px] tracking-[0.12em] uppercase leading-none mt-1 font-medium",
             theme === "dark" ? "text-text-light" : "text-white/40"
           )}
         >
-          Агенція розвитку
+          West Economic Development Agency
         </div>
       </div>
     </div>

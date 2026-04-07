@@ -26,9 +26,9 @@ export function Header() {
               <Phone size={13} />
               +38 (067) 216-05-59
             </a>
-            <a href="mailto:info@veda.agency" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+            <a href="mailto:info@weda.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
               <Mail size={13} />
-              info@veda.agency
+              info@weda.com
             </a>
           </div>
           <div className="flex items-center gap-1.5 text-white/50">
@@ -64,7 +64,7 @@ export function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/kontakty"
-                className="hidden md:inline-flex px-5 py-2.5 bg-gold hover:bg-gold-light text-navy font-bold text-sm rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
+                className="hidden md:inline-flex px-5 py-2.5 bg-gold hover:bg-gold-light text-white font-bold text-sm rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5"
               >
                 Безкоштовна консультація
               </Link>
@@ -95,7 +95,7 @@ export function Header() {
               <Link
                 href="/kontakty"
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-4 py-3 bg-gold text-navy font-bold rounded-xl text-center mt-3"
+                className="block px-4 py-3 bg-gold text-white font-bold rounded-xl text-center mt-3"
               >
                 Безкоштовна консультація
               </Link>

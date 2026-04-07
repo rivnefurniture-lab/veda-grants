@@ -19,11 +19,10 @@ export function CTASection() {
           <FloatingIcons count={6} theme="light" />
 
           <div className="relative z-10 max-w-2xl mx-auto text-center">
-            <svg viewBox="0 0 48 60" fill="none" className="w-8 h-10 mx-auto mb-5">
-              <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-              <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-              <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-              <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+            <svg viewBox="0 0 512 512" fill="none" className="w-10 h-10 mx-auto mb-5">
+              <path d="M100 100 L170 100 L260 412 L190 412 Z" fill="#FFFFFF" />
+              <path d="M220 100 L290 100 L380 412 L310 412 Z" fill="#FFFFFF" />
+              <path d="M340 100 L412 100 L376 220 Z" fill="#E95623" />
             </svg>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 font-heading text-shimmer">
               Не знаєте з чого почати?
@@ -35,7 +34,7 @@ export function CTASection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/kontakty"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
               >
                 Залишити заявку
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -260,14 +260,13 @@ export function GrantDetail({ grant, relatedGrants }: GrantDetailProps) {
               {/* CTA card */}
               <div className="glass-card gradient-border rounded-2xl p-6 sm:p-7 text-center">
                 <svg
-                  viewBox="0 0 48 60"
+                  viewBox="0 0 512 512"
                   fill="none"
-                  className="w-7 h-9 mx-auto mb-3"
+                  className="w-9 h-9 mx-auto mb-3"
                 >
-                  <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-                  <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-                  <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-                  <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+                  <path d="M100 100 L170 100 L260 412 L190 412 Z" fill="#0D1846" />
+                  <path d="M220 100 L290 100 L380 412 L310 412 Z" fill="#0D1846" />
+                  <path d="M340 100 L412 100 L376 220 Z" fill="#E95623" />
                 </svg>
                 <h3 className="font-bold text-text mb-2">
                   Потрібна допомога?
@@ -277,7 +276,7 @@ export function GrantDetail({ grant, relatedGrants }: GrantDetailProps) {
                 </p>
                 <Link
                   href="/kontakty"
-                  className="group inline-flex items-center gap-2 w-full justify-center px-5 py-3 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-sm hover:shadow-lg text-sm"
+                  className="group inline-flex items-center gap-2 w-full justify-center px-5 py-3 bg-gold hover:bg-gold-light text-white font-bold rounded-xl transition-all duration-300 shadow-sm hover:shadow-lg text-sm"
                 >
                   Безкоштовна консультація
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

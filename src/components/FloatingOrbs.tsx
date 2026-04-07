@@ -33,8 +33,8 @@ export function FloatingOrbs({ count = 6, className = "" }: FloatingOrbsProps) {
             height: orb.size,
             left: orb.left,
             bottom: "-10%",
-            background: `radial-gradient(circle, rgba(249, 168, 37, ${orb.opacity}) 0%, rgba(249, 168, 37, 0) 70%)`,
-            boxShadow: `0 0 ${orb.size * 3}px ${orb.size}px rgba(249, 168, 37, ${orb.opacity * 0.5})`,
+            background: `radial-gradient(circle, rgba(233, 86, 35, ${orb.opacity}) 0%, rgba(233, 86, 35, 0) 70%)`,
+            boxShadow: `0 0 ${orb.size * 3}px ${orb.size}px rgba(233, 86, 35, ${orb.opacity * 0.5})`,
             animation: `float-orb ${orb.duration} ${orb.delay} ease-in-out infinite`,
           }}
         />

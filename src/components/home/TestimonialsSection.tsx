@@ -6,7 +6,7 @@ import { FloatingIcons } from "@/components/FloatingIcons";
 
 const testimonials = [
   {
-    text: "Завдяки ВЕДА ми отримали грант на \u20AC50,000 для розвитку нашого виробництва. Професійний підхід від першої консультації до отримання коштів.",
+    text: "Завдяки WEDA ми отримали грант на \u20AC50,000 для розвитку нашого виробництва. Професійний підхід від першої консультації до отримання коштів.",
     author: "Олена Коваленко",
     company: 'ФОП "Коваленко О.В."',
     rating: 5,
@@ -18,7 +18,7 @@ const testimonials = [
     rating: 5,
   },
   {
-    text: "Рекомендую ВЕДА кожному, хто шукає фінансування. Команда дійсно розуміє, як працюють грантові програми.",
+    text: "Рекомендую WEDA кожному, хто шукає фінансування. Команда дійсно розуміє, як працюють грантові програми.",
     author: "Наталія Бондар",
     company: 'ГО "Рівне Інновації"',
     rating: 5,
@@ -79,7 +79,7 @@ export function TestimonialsSection() {
               <div className="border-t border-gray-100/50 pt-5">
                 <div className="flex items-center gap-3">
                   <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-gold-light flex items-center justify-center shadow-sm">
-                    <span className="text-navy font-bold text-sm">
+                    <span className="text-white font-bold text-sm">
                       {testimonial.author
                         .split(" ")
                         .map((n) => n[0])

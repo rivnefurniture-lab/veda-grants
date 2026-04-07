@@ -55,7 +55,7 @@ export function FloatingIcons({
   className = "",
 }: FloatingIconsProps) {
   const icons = allIcons.slice(0, count);
-  const color = theme === "light" ? "rgba(249, 168, 37, 1)" : "rgba(193, 121, 0, 1)";
+  const color = theme === "light" ? "rgba(233, 86, 35, 1)" : "rgba(196, 68, 26, 1)";
 
   return (
     <div

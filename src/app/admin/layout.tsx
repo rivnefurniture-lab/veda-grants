@@ -56,7 +56,7 @@ function LoginForm() {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-navy">ВЕДА</h1>
+            <h1 className="text-3xl font-bold text-navy">WEDA</h1>
             <p className="text-text-light mt-2">Панель адміністратора</p>
           </div>
 
@@ -72,7 +72,7 @@ function LoginForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="admin@veda.ua"
+                  placeholder="admin@weda.com"
                   className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent text-text placeholder:text-text-light/50"
                 />
               </div>
@@ -160,7 +160,7 @@ export default function AdminLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-navy text-white flex flex-col shrink-0">
         <div className="px-6 py-6 border-b border-white/10">
-          <h1 className="text-xl font-bold tracking-wide">ВЕДА Admin</h1>
+          <h1 className="text-xl font-bold tracking-wide">WEDA Admin</h1>
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">

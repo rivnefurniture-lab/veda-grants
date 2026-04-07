@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "ВЕДА — Агенція економічного розвитку";
+export const alt = "WEDA — West Economic Development Agency";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,37 +16,34 @@ export default async function Image() {
           justifyContent: "center",
           width: "100%",
           height: "100%",
-          background: "linear-gradient(135deg, #0a1128 0%, #0f1b3d 40%, #1a2d5a 100%)",
+          background: "linear-gradient(135deg, #091030 0%, #0D1846 40%, #152262 100%)",
           fontFamily: "sans-serif",
         }}
       >
-        {/* Diamond */}
+        {/* W glyph */}
         <svg
-          width="88"
+          width="110"
           height="110"
-          viewBox="0 0 48 60"
+          viewBox="0 0 512 512"
           fill="none"
           style={{ marginBottom: 24 }}
         >
-          <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-          <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-          <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-          <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
+          <path d="M100 100 L170 100 L260 412 L190 412 Z" fill="#FFFFFF" />
+          <path d="M220 100 L290 100 L380 412 L310 412 Z" fill="#FFFFFF" />
+          <path d="M340 100 L412 100 L376 220 Z" fill="#E95623" />
         </svg>
 
-        {/* ВЕДА */}
+        {/* WEDA */}
         <div
           style={{
             fontSize: 72,
             fontWeight: 700,
             letterSpacing: "0.18em",
-            background: "linear-gradient(180deg, #FFE082, #F9A825, #C17900)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "#FFFFFF",
             marginBottom: 8,
           }}
         >
-          ВЕДА
+          WEDA
         </div>
 
         {/* Subtitle */}
@@ -60,7 +57,7 @@ export default async function Image() {
             marginBottom: 48,
           }}
         >
-          Агенція економічного розвитку
+          West Economic Development Agency
         </div>
 
         {/* Tagline */}
@@ -87,12 +84,12 @@ export default async function Image() {
           українського бізнесу
         </div>
 
-        {/* Gold line */}
+        {/* Orange line */}
         <div
           style={{
             width: 200,
             height: 2,
-            background: "rgba(249, 168, 37, 0.4)",
+            background: "rgba(233, 86, 35, 0.4)",
             borderRadius: 1,
             margin: "32px 0 16px",
           }}
@@ -106,7 +103,7 @@ export default async function Image() {
             fontWeight: 500,
           }}
         >
-          veda.agency
+          weda.com
         </div>
       </div>
     ),

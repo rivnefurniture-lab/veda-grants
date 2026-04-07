@@ -185,7 +185,7 @@ export function GrantsCatalog({ grants }: GrantsCatalogProps) {
           </p>
           <Link
             href="/kontakty"
-            className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
           >
             Отримати консультацію
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

@@ -14,11 +14,11 @@ export async function generateMetadata({ params }: GrantPageProps) {
   });
 
   if (!grant) {
-    return { title: "Грант не знайдено | ВЕДА" };
+    return { title: "Грант не знайдено | WEDA" };
   }
 
   return {
-    title: `${grant.title} | ВЕДА`,
+    title: `${grant.title} | WEDA`,
     description: grant.description,
   };
 }

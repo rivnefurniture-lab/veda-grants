@@ -16,9 +16,9 @@ import {
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Про нас — Агенція економічного розвитку",
+  title: "Про нас — West Economic Development Agency",
   description:
-    "Дізнайтеся більше про агенцію ВЕДА — вашого надійного партнера у сфері грантового консалтингу. Команда, місія, цінності.",
+    "Дізнайтеся більше про агенцію WEDA — вашого надійного партнера у сфері грантового консалтингу. Команда, місія, цінності.",
   alternates: { canonical: "/pro-nas" },
 };
 
@@ -80,7 +80,7 @@ const companyDetails = [
   {
     icon: Building2,
     label: "Юридична назва",
-    value: 'ТОВ "Агенція економічного розвитку ВЕДА"',
+    value: 'ТОВ "WEDA — West Economic Development Agency"',
   },
   {
     icon: FileText,
@@ -116,18 +116,13 @@ export default function ProNasPage() {
         <div className="relative z-10 py-20 sm:py-28">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-sm font-medium mb-8">
-              <svg viewBox="0 0 48 60" fill="none" className="w-3.5 h-4" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 0 L44 22 L24 28 Z" fill="#FFD95A" />
-                <path d="M24 0 L4 22 L24 28 Z" fill="#F9A825" />
-                <path d="M44 22 L24 60 L24 28 Z" fill="#B87000" />
-                <path d="M4 22 L24 60 L24 28 Z" fill="#D4860A" />
-              </svg>
+              <div className="w-2 h-2 rounded-full bg-gold" />
               З 2022 року на ринку
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6 font-heading">
               Про агенцію{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-gold-light">
-                ВЕДА
+                WEDA
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-white/60 max-w-2xl mx-auto leading-relaxed">
@@ -175,7 +170,7 @@ export default function ProNasPage() {
               </h2>
               <div className="space-y-4 text-text-light leading-relaxed">
                 <p>
-                  Агенцію ВЕДА було засновано у 2022 році в місті Рівне з чіткою
+                  Агенцію WEDA було засновано у 2022 році в місті Рівне з чіткою
                   метою — допомогти українському бізнесу отримати доступ до
                   грантового фінансування. В умовах складних економічних викликів
                   ми побачили, що багато підприємців просто не знають про
@@ -189,7 +184,7 @@ export default function ProNasPage() {
                   відбору.
                 </p>
                 <p>
-                  Сьогодні ВЕДА — це команда професіоналів, яка щодня працює над
+                  Сьогодні WEDA — це команда професіоналів, яка щодня працює над
                   тим, щоб зробити грантовий ландшафт зрозумілим та доступним.
                   Ми поєднуємо технології автоматизованого пошуку з індивідуальним
                   підходом до кожного клієнта.
@@ -270,7 +265,7 @@ export default function ProNasPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <div className="section-label bg-navy/5 text-navy mx-auto w-fit">
-              Люди ВЕДА
+              Люди WEDA
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4 font-heading">
               Наша команда
@@ -370,7 +365,7 @@ export default function ProNasPage() {
               </p>
               <Link
                 href="/kontakty"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-gold/20 hover:shadow-xl hover:-translate-y-0.5"
               >
                 Зв&apos;язатися з нами
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

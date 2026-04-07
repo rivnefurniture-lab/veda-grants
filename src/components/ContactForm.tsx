@@ -191,7 +191,7 @@ export function ContactForm() {
         type="submit"
         disabled={status === "loading"}
         className={cn(
-          "w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-navy font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-gold/25 hover:shadow-xl hover:-translate-y-0.5",
+          "w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-gold hover:bg-gold-light text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-gold/25 hover:shadow-xl hover:-translate-y-0.5",
           status === "loading" && "opacity-70 cursor-not-allowed hover:translate-y-0"
         )}
       >

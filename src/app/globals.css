@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #0f1b3d;
-  --navy-light: #1a2d5a;
-  --navy-dark: #0a1128;
-  --gold: #f9a825;
-  --gold-light: #ffd95a;
-  --gold-dark: #c17900;
-  --cream: #faf8f5;
-  --text: #1a1a2e;
-  --text-light: #4a4a6a;
+  --navy: #0D1846;
+  --navy-light: #406EB7;
+  --navy-dark: #091030;
+  --gold: #E95623;
+  --gold-light: #F4764E;
+  --gold-dark: #C4441A;
+  --cream: #F8FAFC;
+  --text: #0D1846;
+  --text-light: #5A6284;
   --white: #ffffff;
-  --border: #e2e8f0;
+  --border: #E3E3E3;
   --success: #10b981;
   --danger: #ef4444;
 }
@@ -29,14 +29,14 @@
   --color-border: var(--border);
   --color-success: var(--success);
   --color-danger: var(--danger);
-  --font-heading: var(--font-playfair);
+  --font-heading: var(--font-mulish);
 }
 
 @layer base {
   body {
     background: var(--cream);
     color: var(--text);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Mulish', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -57,7 +57,7 @@
 @layer components {
   /* Gradient backgrounds */
   .gradient-navy {
-    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 40%, var(--navy-light) 100%);
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #152262 100%);
   }
 
   .gradient-gold {
@@ -79,7 +79,7 @@
 
   .card-hover:hover {
     transform: translateY(-6px);
-    box-shadow: 0 24px 48px -12px rgba(15, 27, 61, 0.15);
+    box-shadow: 0 24px 48px -12px rgba(13, 24, 70, 0.15);
   }
 
   /* Animations */
@@ -99,8 +99,8 @@
   }
 
   @keyframes logo-glow {
-    0%, 100% { opacity: 0.25; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.15); }
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.1); }
   }
 
   .animate-logo-glow {
@@ -114,16 +114,6 @@
 
   .animate-line-expand {
     animation: line-expand 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  @keyframes diamond-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-
-  @keyframes spin-diamond {
-    0%, 100% { transform: rotateY(0deg); }
-    50% { transform: rotateY(180deg); }
   }
 
   /* Section spacing */
@@ -151,7 +141,7 @@
     margin-bottom: 1rem;
   }
 
-  /* Gold divider line */
+  /* Accent divider line */
   .gold-line {
     width: 48px;
     height: 3px;
@@ -160,12 +150,11 @@
     margin: 0 auto 1.5rem;
   }
 
-  /* Subtle grid pattern */
+  /* Subtle grid pattern — dot grid */
   .hero-grid-pattern {
     background-image:
-      linear-gradient(rgba(249, 168, 37, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(249, 168, 37, 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+      radial-gradient(circle, rgba(233, 86, 35, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 
   /* ═══════════════════════════════════ */
@@ -220,21 +209,21 @@
   /*        GLASSMORPHISM CARD           */
   /* ═══════════════════════════════════ */
   .glass-card {
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow:
-      0 4px 24px -4px rgba(15, 27, 61, 0.06),
-      0 1px 2px rgba(15, 27, 61, 0.04),
+      0 4px 24px -4px rgba(13, 24, 70, 0.06),
+      0 1px 2px rgba(13, 24, 70, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
   .glass-card:hover {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow:
-      0 20px 40px -8px rgba(15, 27, 61, 0.1),
-      0 4px 12px rgba(15, 27, 61, 0.06),
+      0 20px 40px -8px rgba(13, 24, 70, 0.1),
+      0 4px 12px rgba(13, 24, 70, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 0.7);
   }
 
@@ -313,7 +302,7 @@
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(249, 168, 37, 0.3),
+      rgba(233, 86, 35, 0.3),
       transparent
     );
   }

@@ -10,7 +10,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const metadata = {
   title: "Контакти",
   description:
-    "Зв'яжіться з ВЕДА для консультації щодо грантів та фінансування. Телефон +38 (067) 216-05-59, email, адреса в Рівному.",
+    "Зв'яжіться з WEDA для консультації щодо грантів та фінансування. Телефон +38 (067) 216-05-59, email, адреса в Рівному.",
   alternates: { canonical: "/kontakty" },
 };
 
@@ -24,8 +24,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@veda.agency",
-    href: "mailto:info@veda.agency",
+    value: "info@weda.com",
+    href: "mailto:info@weda.com",
   },
   {
     icon: MapPin,

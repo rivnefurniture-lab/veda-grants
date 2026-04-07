@@ -1,24 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Mulish } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+const mulish = Mulish({
+  variable: "--font-mulish",
   subsets: ["latin", "cyrillic"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "700", "900"],
+  weight: ["300", "400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "ВЕДА — Агенція економічного розвитку | Грантовий консалтинг",
-    template: "%s | ВЕДА",
+    default: "WEDA — West Economic Development Agency | Грантовий консалтинг",
+    template: "%s | WEDA",
   },
   description:
     "Допомагаємо українському бізнесу отримувати гранти та фінансування. Пошук грантів, написання заявок, бізнес-планування. Рівне, Україна.",
@@ -29,32 +24,32 @@ export const metadata: Metadata = {
     "фінансування",
     "Рівне",
     "Україна",
-    "ВЕДА",
+    "WEDA",
     "грантова заявка",
     "фінансування бізнесу",
     "гранти для бізнесу",
     "малий бізнес",
     "гранти Україна",
   ],
-  authors: [{ name: "ВЕДА — Агенція економічного розвитку" }],
-  creator: "ВЕДА",
-  publisher: "ВЕДА — Агенція економічного розвитку",
-  metadataBase: new URL("https://veda.agency"),
+  authors: [{ name: "WEDA — West Economic Development Agency" }],
+  creator: "WEDA",
+  publisher: "WEDA — West Economic Development Agency",
+  metadataBase: new URL("https://weda.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "uk_UA",
-    url: "https://veda.agency",
-    siteName: "ВЕДА — Агенція економічного розвитку",
-    title: "ВЕДА — Грантовий консалтинг для українського бізнесу",
+    url: "https://weda.com",
+    siteName: "WEDA — West Economic Development Agency",
+    title: "WEDA — Грантовий консалтинг для українського бізнесу",
     description:
       "Допомагаємо бізнесу отримувати гранти та фінансування. 150+ грантових можливостей, професійна підготовка заявок, супровід проєктів.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ВЕДА — Грантовий консалтинг для українського бізнесу",
+    title: "WEDA — Грантовий консалтинг для українського бізнесу",
     description:
       "Допомагаємо бізнесу отримувати гранти та фінансування. 150+ грантових можливостей у базі.",
   },
@@ -74,10 +69,10 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "ВЕДА — Агенція економічного розвитку",
-  alternateName: "VEDA",
-  url: "https://veda.agency",
-  logo: "https://veda.agency/icon.svg",
+  name: "WEDA — West Economic Development Agency",
+  alternateName: "WEDA",
+  url: "https://weda.com",
+  logo: "https://weda.com/icon.svg",
   description:
     "Допомагаємо українському бізнесу отримувати гранти та фінансування.",
   address: {
@@ -113,7 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${playfair.variable} antialiased font-[var(--font-inter)]`}>
+      <body className={`${mulish.variable} antialiased font-[var(--font-mulish)]`}>
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
