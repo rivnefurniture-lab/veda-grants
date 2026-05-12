@@ -8,28 +8,36 @@ import {
   Check,
   X,
 } from "lucide-react";
+import { requireAdmin } from "@/lib/admin-auth";
+
+export const dynamic = "force-dynamic";
 
 async function approveGrant(formData: FormData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id") as string;
   await prisma.grant.update({
     where: { id },
     data: { status: "APPROVED", publishedAt: new Date() },
   });
   revalidatePath("/admin");
+  revalidatePath("/granty");
 }
 
 async function rejectGrant(formData: FormData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id") as string;
   await prisma.grant.update({
     where: { id },
     data: { status: "REJECTED" },
   });
   revalidatePath("/admin");
+  revalidatePath("/granty");
 }
 
 export default async function AdminDashboard() {
+  await requireAdmin();
   const [totalGrants, pendingGrants, approvedGrants, unreadLeads] =
     await Promise.all([
       prisma.grant.count(),

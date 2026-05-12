@@ -1,9 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { CheckCircle, Mail, Phone, Building2, Clock } from "lucide-react";
+import { requireAdmin } from "@/lib/admin-auth";
+
+export const dynamic = "force-dynamic";
 
 async function markAsRead(formData: FormData) {
   "use server";
+  await requireAdmin();
   const id = formData.get("id") as string;
   await prisma.contactLead.update({
     where: { id },
@@ -13,6 +17,7 @@ async function markAsRead(formData: FormData) {
 }
 
 export default async function LeadsPage() {
+  await requireAdmin();
   const leads = await prisma.contactLead.findMany({
     orderBy: { createdAt: "desc" },
   });

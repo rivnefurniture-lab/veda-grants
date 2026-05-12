@@ -11,6 +11,7 @@ import {
   Loader2,
   Mail,
   Lock,
+  HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +19,7 @@ const navItems = [
   { href: "/admin", label: "Дашборд", icon: LayoutDashboard },
   { href: "/admin/granty", label: "Гранти", icon: FileText },
   { href: "/admin/leads", label: "Ліди", icon: Users },
+  { href: "/admin/help", label: "Інструкція", icon: HelpCircle },
 ];
 
 function LoginForm() {

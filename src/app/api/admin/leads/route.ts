@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
+import { requireAdminApi } from "@/lib/admin-auth";
 
 export async function PUT(request: NextRequest) {
+  const auth = await requireAdminApi();
+  if (!auth.ok) return auth.response;
   try {
     const { id } = await request.json();
 
