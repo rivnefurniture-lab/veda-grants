@@ -10,33 +10,38 @@ export const metadata = {
   alternates: { canonical: "/granty" },
 };
 
+export const revalidate = 600;
+export const dynamic = "force-dynamic";
+
+async function safeFindGrants() {
+  try {
+    return await prisma.grant.findMany({
+      where: {
+        status: "APPROVED",
+        OR: [{ deadline: { gte: new Date() } }, { deadline: null }],
+      },
+      orderBy: [{ deadline: "asc" }, { publishedAt: "desc" }],
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        amount: true,
+        deadline: true,
+        category: true,
+        source: true,
+        sphere: true,
+        region: true,
+        sourceUrl: true,
+        publishedAt: true,
+      },
+    });
+  } catch {
+    return [];
+  }
+}
+
 export default async function GrantsPage() {
-  const grants = await prisma.grant.findMany({
-    where: {
-      status: "APPROVED",
-      OR: [
-        { deadline: { gte: new Date() } },
-        { deadline: null },
-      ],
-    },
-    orderBy: [
-      { deadline: "asc" },
-      { publishedAt: "desc" },
-    ],
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      amount: true,
-      deadline: true,
-      category: true,
-      source: true,
-      sphere: true,
-      region: true,
-      sourceUrl: true,
-      publishedAt: true,
-    },
-  });
+  const grants = await safeFindGrants();
 
   return (
     <>

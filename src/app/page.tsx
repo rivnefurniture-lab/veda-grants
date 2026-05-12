@@ -6,30 +6,36 @@ import { GrantsPreview } from "@/components/home/GrantsPreview";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { CTASection } from "@/components/home/CTASection";
 
+export const revalidate = 600;
+export const dynamic = "force-dynamic";
+
+async function safeFindGrants() {
+  try {
+    return await prisma.grant.findMany({
+      where: {
+        status: "APPROVED",
+        OR: [{ deadline: { gte: new Date() } }, { deadline: null }],
+      },
+      orderBy: { createdAt: "desc" },
+      take: 6,
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        amount: true,
+        deadline: true,
+        category: true,
+        source: true,
+        sphere: true,
+      },
+    });
+  } catch {
+    return [];
+  }
+}
+
 export default async function HomePage() {
-  const grants = await prisma.grant.findMany({
-    where: {
-      status: "APPROVED",
-      OR: [
-        { deadline: { gte: new Date() } },
-        { deadline: null },
-      ],
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    take: 6,
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      amount: true,
-      deadline: true,
-      category: true,
-      source: true,
-      sphere: true,
-    },
-  });
+  const grants = await safeFindGrants();
 
   return (
     <main>
