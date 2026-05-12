@@ -103,7 +103,7 @@ export default async function Image() {
             fontWeight: 500,
           }}
         >
-          weda.com
+          weda.org.ua
         </div>
       </div>
     ),

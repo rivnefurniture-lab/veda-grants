@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/admin/"],
       },
     ],
-    sitemap: "https://weda.com/sitemap.xml",
+    sitemap: "https://weda.org.ua/sitemap.xml",
   };
 }

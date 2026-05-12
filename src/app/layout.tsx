@@ -35,14 +35,14 @@ export const metadata: Metadata = {
   authors: [{ name: "WEDA — West Economic Development Agency" }],
   creator: "WEDA",
   publisher: "WEDA — West Economic Development Agency",
-  metadataBase: new URL("https://weda.com"),
+  metadataBase: new URL("https://weda.org.ua"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "uk_UA",
-    url: "https://weda.com",
+    url: "https://weda.org.ua",
     siteName: "WEDA — West Economic Development Agency",
     title: "WEDA — Грантовий консалтинг для українського бізнесу",
     description:
@@ -72,8 +72,8 @@ const jsonLd = {
   "@type": "Organization",
   name: "WEDA — West Economic Development Agency",
   alternateName: "WEDA",
-  url: "https://weda.com",
-  logo: "https://weda.com/icon.svg",
+  url: "https://weda.org.ua",
+  logo: "https://weda.org.ua/icon.svg",
   description:
     "Допомагаємо українському бізнесу отримувати гранти та фінансування.",
   address: {
