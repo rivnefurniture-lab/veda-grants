@@ -1,11 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcryptjs";
 
-if (!process.env.DATABASE_URL && process.env.POSTGRES_PRISMA_URL) {
-  process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL;
+function looksLikePostgres(url: string | undefined): boolean {
+  return !!url && (url.startsWith("postgres://") || url.startsWith("postgresql://"));
 }
-if (!process.env.DATABASE_URL && process.env.POSTGRES_URL) {
-  process.env.DATABASE_URL = process.env.POSTGRES_URL;
+if (!looksLikePostgres(process.env.DATABASE_URL)) {
+  if (looksLikePostgres(process.env.POSTGRES_PRISMA_URL)) {
+    process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL;
+  } else if (looksLikePostgres(process.env.POSTGRES_URL)) {
+    process.env.DATABASE_URL = process.env.POSTGRES_URL;
+  }
 }
 
 const prisma = new PrismaClient();

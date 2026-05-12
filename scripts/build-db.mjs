@@ -1,10 +1,14 @@
 import { spawnSync } from "node:child_process";
 
-if (!process.env.DATABASE_URL && process.env.POSTGRES_PRISMA_URL) {
-  process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL;
+function looksLikePostgres(url) {
+  return !!url && (url.startsWith("postgres://") || url.startsWith("postgresql://"));
 }
-if (!process.env.DATABASE_URL && process.env.POSTGRES_URL) {
-  process.env.DATABASE_URL = process.env.POSTGRES_URL;
+if (!looksLikePostgres(process.env.DATABASE_URL)) {
+  if (looksLikePostgres(process.env.POSTGRES_PRISMA_URL)) {
+    process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL;
+  } else if (looksLikePostgres(process.env.POSTGRES_URL)) {
+    process.env.DATABASE_URL = process.env.POSTGRES_URL;
+  }
 }
 
 const url = process.env.DATABASE_URL;
