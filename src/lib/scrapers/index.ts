@@ -1,10 +1,13 @@
 import { prisma } from "@/lib/prisma";
 import { SOURCES, type SourceConfig } from "./sources";
+import { enrichGrant, enrichBatch, isEnrichmentEnabled } from "./enrich";
 
 export type ScrapeResult = {
   total: number;
   created: number;
   skipped: number;
+  enriched: number;
+  rejectedAsNotGrant: number;
   errors: string[];
   startedAt: string;
   finishedAt: string;
@@ -160,6 +163,8 @@ export async function scrapeAll(): Promise<ScrapeResult> {
   let total = 0;
   let created = 0;
   let skipped = 0;
+  let enriched = 0;
+  let rejectedAsNotGrant = 0;
 
   for (const source of SOURCES) {
     if (!source.enabled) continue;
@@ -167,6 +172,7 @@ export async function scrapeAll(): Promise<ScrapeResult> {
       const items = await scrapeSource(source);
       total += items.length;
 
+      const newItems: ScrapedItem[] = [];
       for (const item of items) {
         const existing = await prisma.grant.findUnique({
           where: { sourceUrl: item.sourceUrl },
@@ -175,20 +181,48 @@ export async function scrapeAll(): Promise<ScrapeResult> {
           skipped++;
           continue;
         }
+        newItems.push(item);
+      }
+
+      const enrichedResults: Array<{ item: ScrapedItem; enriched: Awaited<ReturnType<typeof enrichGrant>> }> = isEnrichmentEnabled()
+        ? await enrichBatch(
+            newItems,
+            (item) => ({
+              rawTitle: item.title,
+              rawText: item.fullText || item.description,
+              sourceUrl: item.sourceUrl,
+              sourceName: item.source,
+            }),
+            5
+          )
+        : newItems.map((item) => ({ item, enriched: null }));
+
+      for (const { item, enriched: e } of enrichedResults) {
+        if (e && e.isGrant === false) {
+          rejectedAsNotGrant++;
+          continue;
+        }
+        const deadline = e?.deadline ? safeDate(e.deadline) : null;
         await prisma.grant.create({
           data: {
-            title: item.title,
-            description: item.description,
+            title: (e?.title || item.title).slice(0, 240),
+            description: (e?.description || item.description).slice(0, 500),
             fullText: item.fullText,
+            amount: e?.amount ?? null,
+            amountUsd: e?.amountUsd ?? null,
+            deadline,
             sourceUrl: item.sourceUrl,
             originalUrl: item.sourceUrl,
             source: item.source,
-            category: item.category,
+            category: e?.category ?? item.category ?? null,
+            region: e?.region ?? null,
+            sphere: e?.sphere ?? null,
             status: "PENDING",
             score: 0,
           },
         });
         created++;
+        if (e) enriched++;
       }
     } catch (err) {
       errors.push(`${source.name}: ${err instanceof Error ? err.message : String(err)}`);
@@ -199,8 +233,92 @@ export async function scrapeAll(): Promise<ScrapeResult> {
     total,
     created,
     skipped,
+    enriched,
+    rejectedAsNotGrant,
     errors,
     startedAt: startedAt.toISOString(),
     finishedAt: new Date().toISOString(),
   };
+}
+
+function safeDate(iso: string): Date | null {
+  const d = new Date(iso);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+export async function enrichExistingPending(limit = 100): Promise<{
+  processed: number;
+  enriched: number;
+  rejected: number;
+  errors: number;
+}> {
+  let processed = 0;
+  let enriched = 0;
+  let rejected = 0;
+  let errors = 0;
+
+  if (!isEnrichmentEnabled()) {
+    return { processed: 0, enriched: 0, rejected: 0, errors: 0 };
+  }
+
+  const pendings = await prisma.grant.findMany({
+    where: {
+      status: "PENDING",
+      OR: [
+        { amount: null },
+        { amountUsd: null },
+        { description: { startsWith: "ФОРМА" } },
+        { description: { startsWith: "Запит" } },
+      ],
+    },
+    take: limit,
+    orderBy: { createdAt: "desc" },
+  });
+
+  for (let i = 0; i < pendings.length; i += 5) {
+    const slice = pendings.slice(i, i + 5);
+    const enrichedSlice = await Promise.all(
+      slice.map(async (g) => ({
+        g,
+        e: await enrichGrant({
+          rawTitle: g.title,
+          rawText: g.fullText || g.description,
+          sourceUrl: g.sourceUrl,
+          sourceName: g.source,
+        }),
+      }))
+    );
+
+    for (const { g, e } of enrichedSlice) {
+      processed++;
+      if (!e) {
+        errors++;
+        continue;
+      }
+      if (e.isGrant === false) {
+        await prisma.grant.update({
+          where: { id: g.id },
+          data: { status: "REJECTED" },
+        });
+        rejected++;
+        continue;
+      }
+      await prisma.grant.update({
+        where: { id: g.id },
+        data: {
+          title: e.title.slice(0, 240),
+          description: e.description.slice(0, 500),
+          amount: e.amount ?? g.amount,
+          amountUsd: e.amountUsd ?? g.amountUsd,
+          deadline: e.deadline ? safeDate(e.deadline) : g.deadline,
+          category: e.category ?? g.category,
+          region: e.region ?? g.region,
+          sphere: e.sphere ?? g.sphere,
+        },
+      });
+      enriched++;
+    }
+  }
+
+  return { processed, enriched, rejected, errors };
 }

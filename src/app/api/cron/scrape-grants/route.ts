@@ -4,7 +4,7 @@ import { getAdminUser } from "@/lib/admin-auth";
 import { revalidatePath } from "next/cache";
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 async function isAuthorized(request: NextRequest): Promise<boolean> {
   const secret = process.env.CRON_SECRET;
