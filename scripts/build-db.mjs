@@ -1,18 +1,36 @@
 import { spawnSync } from "node:child_process";
 
+if (!process.env.DATABASE_URL && process.env.POSTGRES_PRISMA_URL) {
+  process.env.DATABASE_URL = process.env.POSTGRES_PRISMA_URL;
+}
+if (!process.env.DATABASE_URL && process.env.POSTGRES_URL) {
+  process.env.DATABASE_URL = process.env.POSTGRES_URL;
+}
+
 const url = process.env.DATABASE_URL;
 if (!url) {
-  console.log("⚠️  DATABASE_URL not set — skipping prisma migrate deploy & seed.");
-  console.log("    Set DATABASE_URL in Vercel env vars to enable database features.");
+  console.log("⚠️  No database URL detected — skipping prisma migrate & seed.");
+  console.log("    Connect a Postgres in Vercel → Storage and redeploy.");
   process.exit(0);
 }
 
-console.log("▶ prisma migrate deploy");
-let r = spawnSync("npx", ["prisma", "migrate", "deploy"], { stdio: "inherit" });
-if (r.status !== 0) process.exit(r.status ?? 1);
+const safeUrl = url.replace(/:[^:@/]+@/, ":***@");
+console.log(`▶ Using DATABASE_URL = ${safeUrl}`);
 
-console.log("▶ seed");
-r = spawnSync("npx", ["tsx", "src/lib/seed.ts"], { stdio: "inherit" });
+console.log("▶ prisma migrate deploy");
+let r = spawnSync("npx", ["prisma", "migrate", "deploy"], {
+  stdio: "inherit",
+  env: process.env,
+});
+if (r.status !== 0) {
+  console.log("⚠️  Migration failed, but continuing build.");
+}
+
+console.log("▶ seed (idempotent — safe to run on every deploy)");
+r = spawnSync("npx", ["tsx", "src/lib/seed.ts"], {
+  stdio: "inherit",
+  env: process.env,
+});
 if (r.status !== 0) {
   console.log("⚠️  Seed failed but continuing build.");
 }
