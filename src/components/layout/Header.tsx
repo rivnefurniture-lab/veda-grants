@@ -26,14 +26,14 @@ export function Header() {
               <Phone size={13} />
               +38 (067) 216-05-59
             </a>
-            <a href="mailto:info@weda.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+            <a href="mailto:agency.weda@gmail.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
               <Mail size={13} />
-              info@weda.com
+              agency.weda@gmail.com
             </a>
           </div>
           <div className="flex items-center gap-1.5 text-white/50">
             <MapPin size={13} />
-            м. Рівне, пр. Миру
+            м. Рівне, вул. Директорії, 6
           </div>
         </div>
       </div>

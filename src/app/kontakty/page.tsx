@@ -24,13 +24,13 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@weda.com",
-    href: "mailto:info@weda.com",
+    value: "agency.weda@gmail.com",
+    href: "mailto:agency.weda@gmail.com",
   },
   {
     icon: MapPin,
     label: "Адреса",
-    value: "м. Рівне, пр. Миру, Рівненська обл., Україна",
+    value: "33013, м. Рівне, вул. Директорії, буд. 6",
     href: null,
   },
   {

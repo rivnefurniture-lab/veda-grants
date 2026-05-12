@@ -3,6 +3,7 @@ import { Mulish } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/BackToTop";
 
 const mulish = Mulish({
   variable: "--font-mulish",
@@ -80,7 +81,8 @@ const jsonLd = {
     addressLocality: "Рівне",
     addressRegion: "Рівненська область",
     addressCountry: "UA",
-    streetAddress: "пр. Миру",
+    streetAddress: "вул. Директорії, 6",
+    postalCode: "33013",
   },
   contactPoint: {
     "@type": "ContactPoint",
@@ -112,6 +114,7 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

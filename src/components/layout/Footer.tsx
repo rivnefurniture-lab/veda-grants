@@ -41,12 +41,20 @@ export function Footer() {
           {/* Services */}
           <div>
             <h3 className="font-semibold text-sm text-white/90 uppercase tracking-wider mb-5">Послуги</h3>
-            <ul className="space-y-2.5 text-sm text-white/50">
-              <li>Пошук грантів</li>
-              <li>Написання заявок</li>
-              <li>Бізнес-планування</li>
-              <li>Консалтинг</li>
-              <li>Супровід проєктів</li>
+            <ul className="space-y-2.5">
+              {[
+                "Пошук грантів",
+                "Написання грантових заявок",
+                "Бізнес-планування",
+                "Супровід проєктів",
+                "Навчання та консалтинг",
+              ].map((name) => (
+                <li key={name}>
+                  <Link href="/poslugy" className="text-white/50 hover:text-gold transition-colors text-sm">
+                    {name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -61,15 +69,15 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@weda.com" className="flex items-center gap-2.5 text-white/50 hover:text-gold transition-colors text-sm">
+                <a href="mailto:agency.weda@gmail.com" className="flex items-center gap-2.5 text-white/50 hover:text-gold transition-colors text-sm">
                   <Mail size={15} className="shrink-0" />
-                  info@weda.com
+                  agency.weda@gmail.com
                 </a>
               </li>
               <li>
                 <div className="flex items-start gap-2.5 text-white/50 text-sm">
                   <MapPin size={15} className="mt-0.5 shrink-0" />
-                  м. Рівне, пр. Миру, Рівненська обл.
+                  33013, м. Рівне, вул. Директорії, буд. 6
                 </div>
               </li>
             </ul>
@@ -77,14 +85,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/[0.06] mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/30 text-sm">
+        <div className="border-t border-white/[0.06] mt-12 pt-8 flex justify-center items-center">
+          <p className="text-white/30 text-sm text-center">
             &copy; {new Date().getFullYear()} ТОВ &quot;West Economic Development Agency WEDA&quot;. Всі права захищені.
           </p>
-          <div className="flex gap-6 text-sm text-white/30">
-            <Link href="/privacy" className="hover:text-white/60 transition-colors">Політика конфіденційності</Link>
-            <Link href="/oferta" className="hover:text-white/60 transition-colors">Публічна оферта</Link>
-          </div>
         </div>
       </div>
     </footer>
