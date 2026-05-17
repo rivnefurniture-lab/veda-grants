@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Target,
@@ -13,7 +14,6 @@ import {
   Heart,
   Briefcase,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Про нас — West Economic Development Agency",
@@ -52,27 +52,24 @@ const values = [
 const teamMembers = [
   {
     name: "Зеленчук Володимир Олександрович",
-    role: "Засновник та директор",
-    initials: "ЗВ",
-    color: "from-navy to-navy-light",
+    role: "Керівник та засновник",
+    photo: "/team/zelenchuk.png",
     description:
-      "Понад 10 років досвіду в сфері бізнес-консалтингу та грантового фінансування. Стратег, який бачить можливості там, де інші бачать перешкоди.",
+      "Вміло поєднує стратегічне бачення з практичними інструментами управління, забезпечуючи ефективне використання грантових ресурсів. Спеціалізується на грантових програмах із залученням іноземних інвестицій.",
   },
   {
-    name: "Анна Петренко",
-    role: "Менеджер грантових проєктів",
-    initials: "АП",
-    color: "from-gold-dark to-gold",
+    name: "Романюк Андрій Анатолійович",
+    role: "Проєктний менеджер",
+    photo: "/team/romaniuk.png",
     description:
-      "Спеціалізується на підготовці грантових заявок та супроводі проєктів. Успішно реалізувала десятки грантових проєктів для малого та середнього бізнесу.",
+      "Основний напрям роботи — грантові програми у сфері переробки та «Своя справа». Веде проєкти від ідеї до підписання угоди.",
   },
   {
-    name: "Максим Ткаченко",
-    role: "Фінансовий аналітик",
-    initials: "МТ",
-    color: "from-navy-light to-navy",
+    name: "Великодна Оксана Миколаївна",
+    role: "Фахівець з написання грантових угод",
+    photo: "/team/velykodna.png",
     description:
-      "Відповідає за фінансове моделювання, розробку бізнес-планів та бюджетування грантових проєктів. Забезпечує точність кожної цифри.",
+      "Спеціаліст з практичним досвідом супроводу грантових проєктів. Готує заявки, працює з документацією та забезпечує відповідність вимогам донорів.",
   },
 ];
 
@@ -283,15 +280,15 @@ export default function ProNasPage() {
                 key={member.name}
                 className="bg-cream/60 rounded-2xl p-8 card-hover border border-gray-100 text-center"
               >
-                <div
-                  className={cn(
-                    "w-20 h-20 rounded-full bg-gradient-to-br flex items-center justify-center mx-auto mb-5 shadow-md",
-                    member.color
-                  )}
-                >
-                  <span className="text-white font-bold text-xl">
-                    {member.initials}
-                  </span>
+                <div className="relative w-28 h-28 rounded-full mx-auto mb-5 overflow-hidden ring-4 ring-white shadow-md bg-gradient-to-br from-navy to-navy-light">
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    sizes="112px"
+                    className="object-cover object-top"
+                    priority
+                  />
                 </div>
 
                 <h3 className="text-lg font-bold text-navy mb-1">
